@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+    </head>
+    <body class="container_success">
+        <div class="logged_in_nav">
+            <div class="flex">
+                <p>Directory Details</p>
+            </div>
+            <div>
+                <img src="../public/images/workos_logo_new.png" alt="workos logo">
+            </div>
+        </div>
+        <div class='flex'>
+            <div class="logged_in_div_left">
+                <div>
+                    <h1>Your app,</h1>
+                    <h2>Enterprise Ready</h2>
+                </div>
+                <div>
+                    <a href="https://workos.com/" target="_blank"><button class='button'>WorkOS</button></a>
+                    <a href="https://workos.com/docs" target="_blank"><button class='button'>Documentation</button></a>
+                    <a href="https://workos.com/docs/reference" target="_blank"><button class='button'>API Reference</button></a>
+                    <a href="https://workos.com/blog" target="_blank"><button class='button'>Blog</button></a>
+                    
+                    
+                </div>
+            </div>
+            <div class="logged_in_div_right">
+                <div class="flex_column">
+                    <h2>Directory Details</h2>
+                    <div class="text_box">
+                        <p><span>Name: </span><%=directory.name%></p>
+                        <p><span>ID: </span><%=directory.id%></p>
+                        <p><span>Type: </span><%=directory.type%></p>
+                        <p><span>Domain: </span><%=directory.domain%></p>
+                        <p><span>Created: </span><%=directory.created_at%></p>
+                    </div>
+                    <div class="flex_column">
+                        <h2>See Users and Groups in this Directory</h2>
+                        <div class="flex">
+                            <a href="/directory/<%=directory.id%>/usersgroups"><button class='button'>Users and Groups</button></a>
+                            <a href="javascript:history.back()"><button class='button'>Back</button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
