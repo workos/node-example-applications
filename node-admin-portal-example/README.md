@@ -13,21 +13,21 @@ Node.js version 10+
    $ cd ~/Desktop/
    ```
 
-2. Clone this repo and install dependencies:
+2. Clone the main repo and install dependencies for the app you use:
     ```bash
     # HTTPS
-    git clone https://github.com/workos-inc/node-admin-portal-example.git
+    git clone https://github.com/workos-inc/node-example-applications.git
     ```
     or
 
     ```bash
     # SSH
-    git clone git@github.com:workos-inc/node-admin-portal-example.git
+    git clone git@github.com:workos-inc/node-example-applications.git 
     ```
 
-3. Navigate to the cloned repo. 
+3. Navigate to the Admin Portal app within the cloned repo. 
    ```bash
-   $ cd node-admin-portal-example
+   $ cd node-example-applications/node-admin-portal-example
    ```
 
 4. Install the dependencies. 
