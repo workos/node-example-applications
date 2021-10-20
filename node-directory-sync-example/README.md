@@ -1,6 +1,6 @@
 # Node.js Example App with Directory Sync powered by WorkOS
 
-An example application demonstrating to use the [WorkOS Node SDK](https://github.com/workos-inc/workos-node) to authenticate users via SSO. 
+An example application demonstrating to use the [WorkOS Node SDK](https://github.com/workos-inc/workos-node) to power Directory Sync. 
 
 ## Prerequisites
 
