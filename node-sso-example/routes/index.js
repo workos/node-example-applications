@@ -62,7 +62,7 @@ router.get('/callback', async (req, res) => {
 
 
   let img;
-  profile.profile.raw_attributes.picture ? img = profile.profile.raw_attributes.picture : img = url('../public/images/workos_logo_new.png');
+  profile.profile.raw_attributes.picture ? img = profile.profile.raw_attributes.picture : img = '../public/images/workos_logo_new.png';
   const json_profile = JSON.stringify(profile)
 
   
