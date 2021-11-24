@@ -15,11 +15,10 @@
             <h2>Node.js Directory Sync Example App</h2>
             <form method="POST" action="/passwordless-auth">
                 <div class='flex_column'>
-                    <ul>
+                    <a href="/webhooks" class="button login_button button_outline">Test Webhooks</a>
                         <% for(let i=0; i<directories.length; i++) {%>
-                            <a href="/directory/<%=directories[i].id%>"><li><%= directories[i].name %></li></a>
+                            <a href="/directory/<%=directories[i].id%>"><button class='button'><%= directories[i].name %></button></a>
                         <% } %>    
-                    </ul> 
                 </div>
             </form>
         </div>
