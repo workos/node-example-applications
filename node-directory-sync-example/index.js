@@ -14,7 +14,15 @@
  const app = express();
  const port = process.env.PORT || "8000";
  const workos = new WorkOS(process.env.WORKOS_API_KEY);
- 
+
+ /**
+  * Server Activation
+  */
+const server = app.listen(port, () => {
+  console.log(`Listening to requests on http://localhost:${port}`);
+});
+
+const io = require('socket.io')(server);
  
  // App Configuration
  app.set("views", path.join(__dirname, "views"));
@@ -28,6 +36,15 @@
  app.use(express.urlencoded({ extended: false }));
  app.use(cookieParser());
  app.use(express.static(path.join(__dirname)));
+
+ // Set socket.io listeners.
+io.on('connection', (socket) => {
+  console.log('connected');
+
+  socket.on('disconnect', () => {
+    console.log('disconnected');
+  });
+});
  
  
  // Route Definitions
@@ -50,6 +67,24 @@
      title: "Directory"
    })
  })
+
+ app.post('/webhooks', async (req, res) => {
+    const webhook = workos.webhooks.constructEvent({
+      payload: req.body,
+      sigHeader: req.headers['workos-signature'],
+      secret: process.env.WORKOS_WEBHOOK_SECRET,
+      tolerance: 90000,
+    })
+    io.emit('webhook event', {webhook})
+
+    return 200;
+  })
+
+app.get('/webhooks', async (req, res) => {
+  res.render('webhooks.ejs', {
+    title: "Webhooks"
+  });
+});
  
  app.get('/directory/:id/usersgroups', async (req, res) => {
    const directories = await workos.directorySync.listDirectories();
@@ -110,11 +145,4 @@
    })
    console.log(user);
  })
- 
- /**
-  * Server Activation
-  */
- app.listen(port, () => {
-   console.log(`Listening to requests on http://localhost:${port}`);
- });
  

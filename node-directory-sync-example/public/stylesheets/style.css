@@ -188,3 +188,9 @@ div.text_box span {
 .logged_in_nav img:hover {
     border: 2px solid #555555;
 }
+
+.button_outline {
+    background-color: #ffffff;
+    color: #6363f1;
+    border-color: #6363f1;
+}
