@@ -7,14 +7,14 @@ const WorkOS = require('@workos-inc/node').default;
 // Initialize the WorkOS client with your WorkOS API Key, pulled from .env.
 const client = new WorkOS(process.env.WORKOS_API_KEY);
 
-// Use domain associated to the organization in which your SSO Connection resides.
-// Alternatively, if your Organization has multiple SSO Connections within it,
-// you can pass the Connection ID instead of the domain.
-const domain = "gmail.com";
+// Use the Connection ID associated to your SSO Connection.
+const connection = "conn_1234";
 
 // Set the redirect URI to whatever URL the end user should land on post-authentication.
 // Ensure that the redirect URI you use is included in your allowlist inthe WorkOS Dashboard.
 const redirectURI = "http://localhost:3000/callback";
+
+const state = 'thisguysemail@gmail.com';
 
 // Store the Client ID, pulled from .env sourced from the Configuration section
 // of the WorkOS Dashboard.
@@ -28,14 +28,15 @@ router.get('/', function(req, res, next) {
 
 /* GET login page */
 router.get('/login', (_req, res) => {
-  // Make a call to getAuthoirzationURL, passing the domain (or Connection ID),
+  // Make a call to getAuthorizationURL, passing the Connection ID,
   // the redirect URI (optional, otherwise it will use your default set in the Dashboard)
   // and the clientID. Store the resulting URL in a `url` variable.
   try {
     const url = client.sso.getAuthorizationURL({
-      domain,
-      redirectURI,
-      clientID,
+      connection: connection,
+      clientID: clientID,
+      redirectURI: redirectURI,
+      state: state,
     });
   
     // Redirect the user to the url generated above.

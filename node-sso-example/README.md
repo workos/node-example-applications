@@ -50,7 +50,7 @@ file at the root of the project, and store these like so:
 
 7. Add `http://localhost:3000/callback` as a Redirect URI in the Configuration section of the Dashboard.
 
-8. Update `routes/index.js` with the Connection domain (or Connection ID).
+8. Update `routes/index.js` with the Connection ID.
 
 ## Testing the Integration
 
