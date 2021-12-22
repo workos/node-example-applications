@@ -8,12 +8,7 @@ Node.js version 10+
 
 ## Node Project Setup
 
-1. In your CLI, navigate to the directory into which you want to clone this git repo.
-   ```bash
-   $ cd ~/Desktop/
-   ```
-
-2. Clone the main repo and install dependencies for the app you'd like to use:
+1. Clone the main repo and install dependencies for the app you'd like to use:
     ```bash
     # HTTPS
     git clone https://github.com/workos-inc/node-example-applications.git
@@ -25,12 +20,12 @@ Node.js version 10+
     git clone git@github.com:workos-inc/node-example-applications.git
     ```
 
-3. Navigate to Directory Sync app within the cloned repo. 
+2. Navigate to Directory Sync app within the cloned repo. 
    ```bash
    $ cd node-example-applications/node-directory-sync-example
    ```
 
-4. Install the dependencies. 
+3. Install the dependencies. 
     ```bash
     $ npm install
     ```
