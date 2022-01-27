@@ -1,5 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
+var session = require('express-session');
+
+app.use(session({ 
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true } 
+}));
 
 // Import the WorkOS package.
 const WorkOS = require('@workos-inc/node').default;
@@ -8,7 +17,7 @@ const WorkOS = require('@workos-inc/node').default;
 const client = new WorkOS(process.env.WORKOS_API_KEY);
 
 // Use the Connection ID associated to your SSO Connection.
-const connection = "conn_1234";
+const connection = "conn_01FNYP9FHYPEYN268C3D0RJJ7Z";
 
 // Set the redirect URI to whatever URL the end user should land on post-authentication.
 // Ensure that the redirect URI you use is included in your allowlist inthe WorkOS Dashboard.
@@ -23,6 +32,14 @@ const clientID = process.env.WORKOS_CLIENT_ID;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+  if (session.isloggedin){
+    res.render('login_successful.ejs', {
+      profile: session.profile, 
+      first_name: session.first_name
+    });
+  }
+
   res.render('index.ejs', { title: 'Express' });
 });
 
@@ -60,15 +77,26 @@ router.get('/callback', async (req, res) => {
     code,
     clientID,
   });
-
-
-  let img;
-  profile.profile.raw_attributes.picture ? img = profile.profile.raw_attributes.picture : img = '../public/images/workos_logo_new.png';
   const json_profile = JSON.stringify(profile)
 
-  
-  res.render('login_successful.ejs', {profile: json_profile, first_name: profile.profile.first_name, image: profile.profile.raw_attributes.picture})
- 
+  session.first_name = profile.profile.first_name;
+  session.profile = json_profile;
+  session.isloggedin = true;
+
+  res.redirect('/');
+  } catch (error) {
+    res.render('error.ejs', {error: error})
+  }
+});
+
+// Logout route
+router.get('/logout', async (req, res) => {
+  try {
+    session.first_name = null;
+    session.profile = null;
+    session.isloggedin = null;
+
+    res.redirect('/');
   } catch (error) {
     res.render('error.ejs', {error: error})
   }
