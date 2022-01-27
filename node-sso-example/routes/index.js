@@ -17,7 +17,7 @@ const WorkOS = require('@workos-inc/node').default;
 const client = new WorkOS(process.env.WORKOS_API_KEY);
 
 // Use the Connection ID associated to your SSO Connection.
-const connection = "conn_01FNYP9FHYPEYN268C3D0RJJ7Z";
+const connection = "";
 
 // Set the redirect URI to whatever URL the end user should land on post-authentication.
 // Ensure that the redirect URI you use is included in your allowlist inthe WorkOS Dashboard.
