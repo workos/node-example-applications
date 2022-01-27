@@ -48,6 +48,10 @@ body {
 
 .heading_text_div {
   align-self: center;
+}
+
+.heading_text_div_err {
+  align-self: center;
   width: 22vw;
 }
 
