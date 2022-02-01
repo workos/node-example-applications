@@ -50,6 +50,11 @@ body {
   align-self: center;
 }
 
+.heading_text_div_err {
+  align-self: center;
+  width: 22vw;
+}
+
 .container_success {
   display: flex;
   flex-direction: column;
