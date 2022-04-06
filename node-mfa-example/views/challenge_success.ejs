@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+    </head>
+    <body class="container_success">
+        <div class="logged_in_nav">
+            <div class="flex">                
+                <h3>MFA Example App</h3>
+            </div>
+            <div>
+                <img src="../public/images/workos_logo_new.png" alt="workos logo">
+            </div>
+        </div>
+        <div class='flex'>
+            <div class="logged_in_div_left">
+                <div>
+                    <h1>Your app,</h1>
+                    <h2>Enterprise Ready</h2>
+                </div>
+                <div>
+                    <a href="https://workos.com/" target="_blank"><button class='button'>WorkOS</button></a>
+                    <a href="https://workos.com/docs" target="_blank"><button class='button'>Documentation</button></a>
+                    <a href="https://workos.com/docs/reference" target="_blank"><button class='button'>API Reference</button></a>
+                    <a href="https://workos.com/blog" target="_blank"><button class='button'>Blog</button></a>
+                    
+                </div>
+            </div>
+            <div class="logged_in_div_right">
+                <div class="flex_column">
+                    <div class="flex-column">
+                    </div>
+                    <div class="flex-column">
+                        <div>
+                            <h1>Success!</h1>
+                            <p>User Verified: <%=verify_factor.valid%></p>
+                            <p>Factor ID: <%=verify_factor.challenge.authentication_factor_id%></p>
+                            <p>Created At: <%=verify_factor.challenge.created_at%>t</p>
+                            <p>Expires At: <%=verify_factor.challenge.updated_at%></p>
+                        </div>
+                    </div>
+                    <a href="/"><button class='button'>Go Back Home</button></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
