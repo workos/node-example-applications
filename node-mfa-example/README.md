@@ -18,9 +18,9 @@ An example Node application demonstrating how to use the [WorkOS MFA API](https:
     git clone git@github.com:workos-inc/node-example-applications.git
     ```
 
-2. Navigate to SSO app within the cloned repo. 
+2. Navigate to MFA app within the cloned repo. 
    ```bash
-   $ cd node-example-applications/node-sso-example
+   $ cd node-example-applications/node-mfa-example
    ```
 
 3. Install the dependencies. 
