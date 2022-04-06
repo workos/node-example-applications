@@ -46,7 +46,7 @@ file at the root of the project, and store these like so:
 
 ## Using the MFA application
 
-11. This application is meant to showcase the MFA API and how to interact with it using the WorkOS Node SDK. It is not meant to show a real-life example of how MFA should be implemented. 
+This application is meant to showcase the MFA API and how to interact with it using the WorkOS Node SDK. It is not meant to show a real-life example of how MFA should be implemented. 
 
    The app supports two types of MFA flows, SMS and Time-based One Time Password (TOTP). 
 
