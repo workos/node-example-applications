@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+</head>
+
+<body class="container_success">
+    <div class="logged_in_nav">
+        <div class="flex">
+            <h3>MFA Example App</h3>
+        </div>
+        <div>
+            <img src="../public/images/workos_logo_new.png" alt="workos logo">
+        </div>
+    </div>
+    <div class='flex'>
+        <div class="logged_in_div_left">
+            <div>
+                <h1>Your app,</h1>
+                <h2>Enterprise Ready</h2>
+            </div>
+            <div>
+                <a href="https://workos.com/" target="_blank"><button class='button'>WorkOS</button></a>
+                <a href="https://workos.com/docs" target="_blank"><button class='button'>Documentation</button></a>
+                <a href="https://workos.com/docs/reference" target="_blank"><button class='button'>API
+                        Reference</button></a>
+                <a href="https://workos.com/blog" target="_blank"><button class='button'>Blog</button></a>
+
+            </div>
+        </div>
+
+        <div class="logged_in_div_right">
+            <div class="flex_column">
+
+                <div class="flex">
+                    <div class="factor_card flex_column space-evenly">
+                        <form method="POST" action="enroll_factor">
+                            <div>
+                                <div class="flex">
+                                    <input class="text_input" type="text" id="phone_number" name="phone_number"
+                                        placeholder="Phone Number" required>
+                                </div>
+                                <div class="flex">
+                                    <button type="submit" name="type" value="sms"
+                                        class="button button-outline button-sm">Enroll New
+                                        SMS
+                                        Factor</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="factor_card flex_column space-evenly">
+                        <form method="POST" action="enroll_factor">
+                            <div class="flex-column">
+                                <div class="flex">
+                                    <input class="text_input" type="text" id="totp_issuer" name="totp_issuer"
+                                        placeholder="TOTP Issuer" required>
+                                </div>
+                                <div class="flex">
+                                    <input class="text_input" type="text" id="totp_user" name="totp_user"
+                                        placeholder="User Email" required>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <button type="submit" name="type" value="totp"
+                                    class="button button-outline button-sm">Enroll
+                                    New TOTP Factor</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <h2>MFA Factors List</h2>
+                <% if (factors) { %>
+                    <% for (var i=0; i < factors.length; i++) { %>
+                        <a href="/factor_detail/<%=factors[i].id%>" class="button login_button">
+                            <%=factors[i].type%> | <%=factors[i].id%>
+                        </a>
+                        <% }}%>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
