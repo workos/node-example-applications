@@ -34,6 +34,19 @@ body {
   align-items: center;
 }
 
+.space-evenly {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.width_25vw {
+  width: 25vw;
+}
+
+.margin-b-45 {
+  margin-bottom: 45px;
+}
+
 .container_success {
   display: flex;
   flex-direction: column;
@@ -77,6 +90,16 @@ body {
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+}
+
+.button-outline {
+  background-color: white;
+  color: rgb(46, 46, 46);
+}
+
+.button-sm {
+  padding: 8px 16px;
+  margin-top:14px
 }
 
 .button:hover {
@@ -191,10 +214,26 @@ div.text_box {
 
 .qr_div {
   align-self: center;
-  padding-top: 15px;
+  margin-top: 45px;
 }
 
 .qr_code {
   width: 7vw; 
   max-width: 100px;
+}
+
+.factor_card {
+  border: 1px solid #555555;
+  border-radius: 10px;
+  width: 20vw;
+  margin: 0px 15px 0px 15px;
+  padding: 25px;
+}
+
+.card {
+  border: 1px solid #555555;
+  border-radius: 10px;
+  margin: 0px 15px 0px 15px;
+  padding: 25px 50px;
+  margin-bottom: 20px;
 }
