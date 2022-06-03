@@ -1,0 +1,8 @@
+{
+  "name": "node-example-applications",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:workos-inc/node-example-applications.git",
+  "author": "Logan Gingerich <logangingerich@yahoo.com>",
+  "license": "MIT"
+}
