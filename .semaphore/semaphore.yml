@@ -4,6 +4,15 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
+global_job_config:
+  env_vars:
+    - name: NODE_ENV
+      value: test
+  prologue:
+    commands:
+      - checkout
+      - nvm use
+      - bash ~/workos-node/bin/restore-or-install
 blocks:
   - name: Install Dependencies
     task:
@@ -17,12 +26,6 @@ blocks:
   - name: Test
     task:
       jobs:
-        - name: yarn prettier
-          commands:
-            - yarn prettier
         - name: yarn lint
           commands:
             - yarn lint
-        - name: yarn build
-          commands:
-            - yarn build
