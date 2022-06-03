@@ -11,8 +11,6 @@ global_job_config:
   prologue:
     commands:
       - checkout
-      - nvm use
-      - bash ~/workos-node/bin/restore-or-install
 blocks:
   - name: Install Dependencies
     task:
