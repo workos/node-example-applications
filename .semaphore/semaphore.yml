@@ -14,15 +14,12 @@ blocks:
       prologue:
         commands:
           - checkout
+    dependencies: []
   - name: Test
     task:
       jobs:
-        - name: yarn prettier
-          commands:
-            - yarn prettier
         - name: yarn lint
           commands:
             - yarn lint
-        - name: yarn build
-          commands:
-            - yarn build
+    dependencies:
+      - Install Dependencies
