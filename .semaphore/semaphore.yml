@@ -23,9 +23,12 @@ blocks:
       prologue:
         commands:
           - checkout
+    dependencies: []
   - name: Test
     task:
       jobs:
         - name: yarn lint
           commands:
             - yarn lint
+    dependencies:
+      - Install Dependencies
