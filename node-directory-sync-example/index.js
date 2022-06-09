@@ -8,7 +8,7 @@
  const bodyParser = require('body-parser');
  var logger = require('morgan');
  var cookieParser = require('cookie-parser');
- process.on('unhandledRejection', (reason, p) => { throw reason });
+ process.on('unhandledRejection', (reason) => { throw reason });
  
  // App Variables
  const app = express();
@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
    })
  })
 
- app.post('/webhooks', async (req, res) => {
+ app.post('/webhooks', async (req) => {
     const webhook = workos.webhooks.constructEvent({
       payload: req.body,
       sigHeader: req.headers['workos-signature'],

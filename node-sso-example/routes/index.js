@@ -31,7 +31,7 @@ const clientID = process.env.WORKOS_CLIENT_ID;
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
 
   if (session.isloggedin){
     res.render('login_successful.ejs', {
