@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 require('dotenv').config()
-process.on('unhandledRejection', (reason, p) => { throw reason });
+process.on('unhandledRejection', (reason) => { throw reason });
 
 // App Variables
 const app = express();
@@ -65,7 +65,7 @@ app.get("/success", async (req, res) => {
     clientID,
   });
 
-  p_profile = JSON.stringify(profile);
+  let p_profile = JSON.stringify(profile);
   
   res.render("login_successful.ejs", {
     profile: p_profile,

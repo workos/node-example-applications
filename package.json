@@ -1,0 +1,22 @@
+{
+  "name": "node-example-applications",
+  "version": "1.0.0",
+  "description": "Example applications showcasing the WorkOS suite of products.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workos/node-example-applications.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/workos/node-example-applications/issues"
+  },
+  "homepage": "https://github.com/workos/node-example-applications#readme",
+  "devDependencies": {
+    "eslint": "^8.17.0"
+  }
+}

@@ -12,7 +12,6 @@ app.use(session({
 
 const WorkOS = require('@workos-inc/node').default;
 const workos = new WorkOS(process.env.WORKOS_API_KEY);
-const clientID = process.env.WORKOS_CLIENT_ID;
 factors = session.factors = [];
 
 router.get('/', function(req, res) {
@@ -45,7 +44,6 @@ router.post('/enroll_factor', async function(req, res) {
 });
 
 router.get('/factor_detail/:id', async (req, res) => {
-  const factor_list = session.factors;
    const factor = await factors.filter((factor) => {
      return factor.id == req.params.id
    })[0]

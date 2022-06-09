@@ -3,11 +3,10 @@ const express = require("express");
 const path = require("path");
 const WorkOS = require('@workos-inc/node').default;
 require('dotenv').config()
-process.on('unhandledRejection', (reason, p) => { throw reason });
+process.on('unhandledRejection', (reason) => { throw reason });
 const bodyParser = require('body-parser');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var parser = require('tld-extract');
 
 // App Variables
 const app = express();
@@ -60,7 +59,7 @@ app.post('/provision-enterprise', async (req, res) => {
 });
 
 app.get('/sso-admin-portal', async (_req, res) => {
-  const organizationID =  organization.id;
+  const organizationID =  global.organization.id;
 
   // Generate an SSO Adnim Portal Link using the Organization ID from above.
   const { link } = await workos.portal.generateLink({
@@ -72,7 +71,7 @@ app.get('/sso-admin-portal', async (_req, res) => {
 });
 
 app.get('/dsync-admin-portal', async (_req, res) => {
-  const organizationID =  organization.id;
+  const organizationID =  global.organization.id;
 
   // Generate an SSO Adnim Portal Link using the Organization ID from above.
   const { link } = await workos.portal.generateLink({
