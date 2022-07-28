@@ -1,48 +1,23 @@
-// const express = require('express')
 import express from 'express'
-
-// const path = require('path')
-import path from 'path'
-
-// const WorkOS = require('@workos-inc/node').default
-import { WorkOS } from '@workos-inc/node'
-
-// require('dotenv').config()
 import 'dotenv/config'
-
-// const bodyParser = require('body-parser')
-
-// var logger = require('morgan')
 import morgan from 'morgan'
-
-// var cookieParser = require('cookie-parser')
-process.on('unhandledRejection', (reason) => {
-    throw reason
-})
+import { WorkOS } from '@workos-inc/node'
+import { Server } from 'socket.io'
 
 const app = express()
+app.use('/public', express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(morgan('dev'))
+
 const port = process.env.PORT || '8000'
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 
 const server = app.listen(port, () => {
-    console.log(`Listening to requests on http://localhost:${port}`)
+    console.log(`⚡️ [server]: Server is running at https://localhost:${port}`)
 })
 
-import { Server } from 'socket.io'
-// const io = require('socket.io')(server)
 const io = new Server(server)
-
-// app.set('views', path.join(__dirname, 'views'))
-// app.engine('html', require('ejs').renderFile)
-app.set('view engine', 'ejs')
-// app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.urlencoded({ extended: true }))
-
-app.use(morgan('dev'))
-app.use(express.json())
-app.use('/public', express.static('public'))
-app.use(express.urlencoded({ extended: false }))
-// app.use(express.static(path.join(__dirname)))
 
 io.on('connection', (socket) => {
     console.log('connected')
