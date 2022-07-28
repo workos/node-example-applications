@@ -29,7 +29,6 @@ io.on('connection', (socket) => {
 
 app.get('/', async (req, res) => {
     const directories = await workos.directorySync.listDirectories()
-    console.log(directories.data)
     res.render('index.ejs', {
         title: 'Home',
         directories: directories.data,
