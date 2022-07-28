@@ -5,53 +5,90 @@
     <body class="container_success">
         <div class="logged_in_nav">
             <div class="flex">
-                <p>Webhook Details</p>
+                <div>
+                    <img src="/public/images/workos_logo_new.png" alt="workos logo">
+                </div>
+                <div class="flex">
+                    <p>WorkOSp</p>
+                </div>
             </div>
             <div>
-                <img src="../public/images/workos_logo_new.png" alt="workos logo">
+                <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
+                <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
+                        Reference</button></a>
+                <a href="https://workos.com/blog" target="_blank"><button
+                        class='button nav-item blog-nav-button'>Blog</button></a>
+                <a href="https://workos.com/" target="_blank"><button class='button button-outline'>WorkOS</button></a>
             </div>
         </div>
         <div class='flex'>
             <div class="logged_in_div_left">
-                <div>
+                <div class="title-text">
                     <h1>Your app,</h1>
-                    <h2>Enterprise Ready</h2>
+                    <h2 class="home-hero-gradient">Enterprise Ready</h2>
                 </div>
-                <div>
-                    <a href="https://workos.com/" target="_blank"><button class='button'>WorkOS</button></a>
-                    <a href="https://workos.com/docs" target="_blank"><button class='button'>Documentation</button></a>
-                    <a href="https://workos.com/docs/reference" target="_blank"><button class='button'>API Reference</button></a>
-                    <a href="https://workos.com/blog" target="_blank"><button class='button'>Blog</button></a>
-                    
-                    
+                <div class="title-subtext">
+                    <p>Start selling to enterprise customers with just a few lines of code.</p>
+                    <p>Implement features like single sign-on in minutes instead of months.</p>
+                </div>
+                <div class="flex success-buttons">
+                    <a href="https://workos.com/signup" target="_blank"><button class='button'>Get Started</button></a>
+                    <a href="mailto:sales@workos.com?subject=WorkOS Sales Inquiry" target="_blank"><button
+                            class='button button-outline sales-button'>Contact
+                            Sales</button></a>
                 </div>
             </div>
             <div class="logged_in_div_right">
                 <div class="flex_column">
-                    <h2>Webhook Details</h2>
-                </div>
-                <div class="logged_in_div_right">
-                    <div class="flex_column directory_container">
-                      <div class="flex flex_column">
-                        <h1>Node Webhooks Example</h1>
-                        <div class="text_box" id="empty"></div>
-                        <a href="/webhooks" class="button login_button">Clear</a>
-                        <div style="margin-top: 20px" id="webhooks-view"></div>
-                      </div>
+                    <h2>Webhooks</h2>
+                    <div id="webhooks-view">
+
                     </div>
-                  </div>
-                  <a href="javascript:history.back()"><button class='button'>Back</button></a>
+                </div>
+                <div id='clear_button_div' class='flex directory_container'>
+                    <div id="tutorial_button" class="flex half_width">
+                        <a href="https://workos.com/blog/test-workos-webhooks-locally-ngrok" target="_blank"
+                            class="button button-sm login_button">Tutorial</a>
+                    </div>
+                    <div id="clear_button" class="hidden">
+                        <a href="/webhooks" class="button button-sm button-outline">Clear</a>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="/socket.io/socket.io.js"></script>
-        <script>
-            const socket = io();
+        <script type="text/javascript" charset="utf-8">
+            var counter = 0
+            var webhooksView = document.getElementById('webhooks-view')
+            var clearButtonDiv = document.getElementById('clear_button_div')
+            var clearButton = document.getElementById('clear_button')
+            var tutorialButton = document.getElementById('tutorial_button')
 
-            socket.on('webhook event', function(event){
-                var wh = document.createElement('h4');
-                wh.textContent = JSON.stringify(event.webhook);
-                document.getElementsByClassName('text_box')[0].appendChild(wh);
-            });
-         </script>
+            var socket = io()
+            socket.on('connect', function () {
+                console.log('socket connection successful')
+            })
+
+            socket.on('webhook event', (data) => {
+                webhooksView.classList.add("webhooks_container")
+                webhooksView.insertAdjacentHTML("afterbegin",
+                    "<div class='margin_top'> Webhook received at: " + new Date().toISOString() + "</div>" +
+                    "<br/>" +
+                    "<pre>" +
+                    "<code class=`prettyprint`>" + JSON.stringify(data.webhook, null, 2) + "</code>" +
+                    "</pre>" +
+                    "<br/>" +
+                    "<hr style='max-width: 40vw' />"
+                );
+                if (counter < 1) {
+                    clearButtonDiv.classList.remove('login_button')
+                    clearButtonDiv.classList.add('flex_right')
+                    clearButton.classList.remove('hidden')
+                    tutorialButton.classList.add('hidden')
+                    counter++
+                }
+            })
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     </body>
 </html>
