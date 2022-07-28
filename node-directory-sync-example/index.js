@@ -47,24 +47,6 @@ app.get('/directory/:id', async (req, res) => {
     })
 })
 
-app.post('/webhooks', async (req, res) => {
-    const webhook = workos.webhooks.constructEvent({
-        payload: req.body,
-        sigHeader: req.headers['workos-signature'],
-        secret: process.env.WORKOS_WEBHOOK_SECRET,
-        tolerance: 90000,
-    })
-    io.emit('webhook event', { webhook })
-
-    res.sendStatus(200)
-})
-
-app.get('/webhooks', async (req, res) => {
-    res.render('webhooks.ejs', {
-        title: 'Webhooks',
-    })
-})
-
 app.get('/directory/:id/usersgroups', async (req, res) => {
     const directories = await workos.directorySync.listDirectories()
     const directory = await directories.data.filter((directory) => {
@@ -76,7 +58,6 @@ app.get('/directory/:id/usersgroups', async (req, res) => {
     const users = await workos.directorySync.listUsers({
         directory: req.params.id,
     })
-    console.log(groups.data, users.data)
 
     res.render('groups.ejs', {
         groups: groups.data,
@@ -100,7 +81,7 @@ app.get('/directory/:id/group/:groupId', async (req, res) => {
     res.render('group.ejs', {
         directory: directory,
         title: 'Directory',
-        group: JSON.stringify(group),
+        group: JSON.stringify(group, null, 2),
         rawGroup: group,
     })
 })
@@ -116,11 +97,28 @@ app.get('/directory/:id/user/:userId', async (req, res) => {
     const user = await users.data.filter((user) => {
         return user.id == req.params.userId
     })[0]
-    res.render('user', {
+    res.render('user.ejs', {
         directory: directory,
         title: 'Directory',
-        user: JSON.stringify(user),
+        user: JSON.stringify(user, null, 2),
         rawUser: user,
     })
-    console.log(user)
+})
+
+app.post('/webhooks', async (req, res) => {
+    const webhook = workos.webhooks.constructEvent({
+        payload: req.body,
+        sigHeader: req.headers['workos-signature'],
+        secret: process.env.WORKOS_WEBHOOK_SECRET,
+        tolerance: 90000,
+    })
+    io.emit('webhook event', { webhook })
+
+    res.sendStatus(200)
+})
+
+app.get('/webhooks', async (req, res) => {
+    res.render('webhooks.ejs', {
+        title: 'Webhooks',
+    })
 })
