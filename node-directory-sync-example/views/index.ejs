@@ -11,15 +11,14 @@
                     <h1>WorkOS</h1>
                 </div>
             </div>
-            
             <h2>Node.js Directory Sync Example App</h2>
             <form method="POST" action="/passwordless-auth">
                 <div class='flex_column'>
                     <hr style="width:100%">
-                    <a href="/webhooks" class="button login_button button_outline">Test Webhooks</a>
+                    <a href="/webhooks" class="button button-sm login_button button-outline">Test Webhooks</a>
                     <hr style="width:100%">
                         <% for(let i=0; i<directories.length; i++) {%>
-                            <a href="/directory/<%=directories[i].id%>" class="button login_button"><%= directories[i].name %></a>
+                            <a href="/directory/<%=directories[i].id%>" class="button button-sm login_button"><%= directories[i].name %></a>
                         <% } %>    
                 </div>
             </form>

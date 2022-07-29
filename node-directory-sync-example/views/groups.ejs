@@ -5,56 +5,96 @@
     <body class="container_success">
         <div class="logged_in_nav">
             <div class="flex">
-                <p>Directory Details</p>
+                <div>
+                    <img src="/public/images/workos_logo_new.png" alt="workos logo">
+                </div>
+                <div class="flex">
+                    <p>WorkOS</p>
+                </div>
             </div>
             <div>
-                <img src="../../public/images/workos_logo_new.png" alt="workos logo">
+                <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
+                <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
+                        Reference</button></a>
+                <a href="https://workos.com/blog" target="_blank"><button
+                        class='button nav-item blog-nav-button'>Blog</button></a>
+                <a href="https://workos.com/" target="_blank"><button class='button button-outline'>WorkOS</button></a>
             </div>
         </div>
         <div class='flex'>
             <div class="logged_in_div_left">
-                <div>
+                <div class="title-text">
                     <h1>Your app,</h1>
-                    <h2>Enterprise Ready</h2>
+                    <h2 class="home-hero-gradient">Enterprise Ready</h2>
                 </div>
-                <div>
-                    <a href="https://workos.com/" target="_blank"><button class='button'>WorkOS</button></a>
-                    <a href="https://workos.com/docs" target="_blank"><button class='button'>Documentation</button></a>
-                    <a href="https://workos.com/docs/reference" target="_blank"><button class='button'>API Reference</button></a>
-                    <a href="https://workos.com/blog" target="_blank"><button class='button'>Blog</button></a>
-                    
-                    
+                <div class="title-subtext">
+                    <p>Start selling to enterprise customers with just a few lines of code.</p>
+                    <p>Implement features like single sign-on in minutes instead of months.</p>
                 </div>
-            </div> 
+                <div class="flex success-buttons">
+                    <a href="https://workos.com/signup" target="_blank"><button class='button'>Get Started</button></a>
+                    <a href="mailto:sales@workos.com?subject=WorkOS Sales Inquiry" target="_blank"><button
+                            class='button button-outline sales-button'>Contact
+                            Sales</button></a>
+                </div>
+            </div>
             <div class="logged_in_div_right">
                 <div class="flex_column">
-                    <h2>Groups for <%=directory.name%></h2>
+                    <p>⚡️ Groups for <%=directory.name%> ⚡️
+                    </p>
+                    </h2>
                     <div class="text_box">
                         <%if (groups.length) {%>
                             <ul>
                                 <% for(let i=0; i<groups.length; i++) {%>
-                                    <a href="/directory/<%=directory.id%>/group/<%=groups[i].id%>"><li><%= groups[i].name %></li></a>
-                                <% } %>    
-                            </ul> 
-                        <%} else { %>
-                                <p>No Groups Found</p>
-                            <%}%>
+                                    <%if(i % 2==0){%>
+                                        <a href="/directory/<%=directory.id%>/group/<%=groups[i].id%>">
+                                            <li class="even">
+                                                <%= groups[i].name %>
+                                            </li>
+                                        </a>
+                                        <%} else {%>
+                                            <a href="/directory/<%=directory.id%>/group/<%=groups[i].id%>">
+                                                <li>
+                                                    <%= groups[i].name %>
+                                                </li>
+                                            </a>
+                                            <%}%>
+                                                <% } %>
+                            </ul>
+                            <%} else { %>
+                                <code>No Groups Found</code>
+                                <%}%>
                     </div>
-                    <h2>Users for <%=directory.name%></h2>
+                    <p>⚡️ Users for <%=directory.name%> ⚡️
+                    </p>
                     <div class="text_box">
                         <%if (users.length) {%>
                             <ul>
                                 <% for(let i=0; i<users.length; i++) {%>
-                                    <a href="/directory/<%=directory.id%>/user/<%=users[i].id%>"><li><%=users[i].first_name%> <%=users[i].last_name%>, <%=users[i].username%></li></a>
-                                <% } %>    
-                            </ul> 
+                                    <%if (i % 2==0) {%>
+                                        <a href="/directory/<%=directory.id%>/user/<%=users[i].id%>">
+                                            <li class="even">
+                                                <%=users[i].first_name%>
+                                                    <%=users[i].last_name%>, <%=users[i].username%>
+                                            </li>
+                                        </a>
+                                        <%}else{%>
+                                            <a href="/directory/<%=directory.id%>/user/<%=users[i].id%>">
+                                                <li>
+                                                    <%=users[i].first_name%>
+                                                        <%=users[i].last_name%>, <%=users[i].username%>
+                                                </li>
+                                            </a>
+                                            <%}%>
+                                                <% } %>
+                            </ul>
                             <%} else { %>
-                                <p>No Users Found</p>
-                            <%}%>
+                                <code>No Users Found</code>
+                                <%}%>
                     </div>
-                    <a href="javascript:history.back()"><button class='groups_button button'>Back</button></a>
+                    <a href="javascript:history.back()"><button class='groups_button button button-sm'>Back</button></a>
                 </div>
-
             </div>
         </div>
     </body>
