@@ -36,13 +36,11 @@ Node.js version 10+
 ## Configure your environment
 
 1. Grab your [API Key](https://dashboard.workos.com/api-keys).
-2. Get your [Client ID](https://dashboard.workos.com/sso/configuration).
-3. Create a `.env` file at the root of the project and populate with the
+2. Create a `.env` file at the root of the project and populate with the
    following environment variables (using values found above):
 
 ```typescript
 WORKOS_API_KEY = your_api_key_here
-WORKOS_CLIENT_ID = your_project_id_here
 ```
 
 ## Run the server
