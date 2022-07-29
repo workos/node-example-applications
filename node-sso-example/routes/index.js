@@ -1,8 +1,9 @@
 import express from 'express'
 import session from 'express-session'
-import 'dotenv/config'
-const router = express.Router()
+import { WorkOS } from '@workos-inc/node'
+
 const app = express()
+const router = express.Router()
 
 app.use(
     session({
@@ -13,13 +14,11 @@ app.use(
     })
 )
 
-import { WorkOS } from '@workos-inc/node'
-
-const client = new WorkOS(process.env.WORKOS_API_KEY)
+const workos = new WorkOS(process.env.WORKOS_API_KEY)
+const clientID = process.env.WORKOS_CLIENT_ID
 const connection = 'conn_01G2TM1BYXCPFB5Y12WN7FK2DY'
 const redirectURI = 'http://localhost:8000/callback'
 const state = 'thisguysemail@gmail.com'
-const clientID = process.env.WORKOS_CLIENT_ID
 
 router.get('/', function (req, res) {
     if (session.isloggedin) {
@@ -34,7 +33,7 @@ router.get('/', function (req, res) {
 
 router.get('/login', (_req, res) => {
     try {
-        const url = client.sso.getAuthorizationURL({
+        const url = workos.sso.getAuthorizationURL({
             connection: connection,
             clientID: clientID,
             redirectURI: redirectURI,
@@ -51,7 +50,7 @@ router.get('/callback', async (req, res) => {
     try {
         const { code } = req.query
 
-        const profile = await client.sso.getProfileAndToken({
+        const profile = await workos.sso.getProfileAndToken({
             code,
             clientID,
         })

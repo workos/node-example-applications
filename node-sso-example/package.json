@@ -21,7 +21,6 @@
     "cookie-parser": "^1.4.6",
     "express-session": "^1.17.2",
     "http-errors": "~1.6.3"
-
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
