@@ -1,105 +1,82 @@
-var express = require('express');
-var router = express.Router();
-var app = express();
-var session = require('express-session');
+import express from 'express'
+import session from 'express-session'
+import 'dotenv/config'
+const router = express.Router()
+const app = express()
 
-app.use(session({ 
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true } 
-}));
+app.use(
+    session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: true },
+    })
+)
 
-// Import the WorkOS package.
-const WorkOS = require('@workos-inc/node').default;
+import { WorkOS } from '@workos-inc/node'
 
-// Initialize the WorkOS client with your WorkOS API Key, pulled from .env.
-const client = new WorkOS(process.env.WORKOS_API_KEY);
+const client = new WorkOS(process.env.WORKOS_API_KEY)
+const connection = 'conn_01G2TM1BYXCPFB5Y12WN7FK2DY'
+const redirectURI = 'http://localhost:8000/callback'
+const state = 'thisguysemail@gmail.com'
+const clientID = process.env.WORKOS_CLIENT_ID
 
-// Use the Connection ID associated to your SSO Connection.
-const connection = "";
+router.get('/', function (req, res) {
+    if (session.isloggedin) {
+        res.render('login_successful.ejs', {
+            profile: session.profile,
+            first_name: session.first_name,
+        })
+    }
 
-// Set the redirect URI to whatever URL the end user should land on post-authentication.
-// Ensure that the redirect URI you use is included in your allowlist inthe WorkOS Dashboard.
-const redirectURI = "http://localhost:3000/callback";
+    res.render('index.ejs', { title: 'Express' })
+})
 
-const state = 'thisguysemail@gmail.com';
-
-// Store the Client ID, pulled from .env sourced from the Configuration section
-// of the WorkOS Dashboard.
-const clientID = process.env.WORKOS_CLIENT_ID;
-
-
-/* GET home page. */
-router.get('/', function(req, res) {
-
-  if (session.isloggedin){
-    res.render('login_successful.ejs', {
-      profile: session.profile, 
-      first_name: session.first_name
-    });
-  }
-
-  res.render('index.ejs', { title: 'Express' });
-});
-
-/* GET login page */
 router.get('/login', (_req, res) => {
-  // Make a call to getAuthorizationURL, passing the Connection ID,
-  // the redirect URI (optional, otherwise it will use your default set in the Dashboard)
-  // and the clientID. Store the resulting URL in a `url` variable.
-  try {
-    const url = client.sso.getAuthorizationURL({
-      connection: connection,
-      clientID: clientID,
-      redirectURI: redirectURI,
-      state: state,
-    });
-  
-    // Redirect the user to the url generated above.
-    res.redirect(url);
-    
-  } catch (error) {
-    res.render('error.ejs', {error: error})
-  }
-});
+    try {
+        const url = client.sso.getAuthorizationURL({
+            connection: connection,
+            clientID: clientID,
+            redirectURI: redirectURI,
+            state: state,
+        })
 
-/* GET callback page */
+        res.redirect(url)
+    } catch (error) {
+        res.render('error.ejs', { error: error })
+    }
+})
+
 router.get('/callback', async (req, res) => {
-  try {
-    // Capture and save the `code` passed as a querystring in the Redirect URI.
-  const { code } = req.query;
+    try {
+        const { code } = req.query
 
-  // Make a call to getProfileAndToken and pass in the code (stored above) and
-  // the clientID. This will return a JSON user profile, stored here in `profile`.
-  
-  const profile = await client.sso.getProfileAndToken({
-    code,
-    clientID,
-  });
-  const json_profile = JSON.stringify(profile)
+        const profile = await client.sso.getProfileAndToken({
+            code,
+            clientID,
+        })
+        const json_profile = JSON.stringify(profile)
 
-  session.first_name = profile.profile.first_name;
-  session.profile = json_profile;
-  session.isloggedin = true;
+        session.first_name = profile.profile.first_name
+        session.profile = json_profile
+        session.isloggedin = true
 
-  res.redirect('/');
-  } catch (error) {
-    res.render('error.ejs', {error: error})
-  }
-});
+        res.redirect('/')
+    } catch (error) {
+        res.render('error.ejs', { error: error })
+    }
+})
 
-// Logout route
 router.get('/logout', async (req, res) => {
-  try {
-    session.first_name = null;
-    session.profile = null;
-    session.isloggedin = null;
+    try {
+        session.first_name = null
+        session.profile = null
+        session.isloggedin = null
 
-    res.redirect('/');
-  } catch (error) {
-    res.render('error.ejs', {error: error})
-  }
-});
+        res.redirect('/')
+    } catch (error) {
+        res.render('error.ejs', { error: error })
+    }
+})
 
-module.exports = router;
+export default router
