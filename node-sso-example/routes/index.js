@@ -26,9 +26,9 @@ router.get('/', function (req, res) {
             profile: session.profile,
             first_name: session.first_name,
         })
+    } else {
+        res.render('index.ejs', { title: 'Express' })
     }
-
-    res.render('index.ejs', { title: 'Express' })
 })
 
 router.get('/login', (_req, res) => {
