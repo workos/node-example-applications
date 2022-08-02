@@ -16,7 +16,7 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 const clientID = process.env.WORKOS_CLIENT_ID
-const connection = 'conn_01G2TM1BYXCPFB5Y12WN7FK2DY'
+const connection = ''
 const redirectURI = 'http://localhost:8000/callback'
 const state = 'thisguysemail@gmail.com'
 
@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
     }
 })
 
-router.get('/login', (_req, res) => {
+router.get('/login', (req, res) => {
     try {
         const url = workos.sso.getAuthorizationURL({
             connection: connection,
@@ -54,7 +54,7 @@ router.get('/callback', async (req, res) => {
             code,
             clientID,
         })
-        const json_profile = JSON.stringify(profile)
+        const json_profile = JSON.stringify(profile, null, 4)
 
         session.first_name = profile.profile.first_name
         session.profile = json_profile
