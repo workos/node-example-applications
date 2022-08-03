@@ -40,34 +40,43 @@
             </div>
             <div class="logged_in_div_right">
                 <div class="flex_column">
-                    <div class="flex space-between width-40vw">
-                        <div>
-                            <h2>Current MFA Factors</h2>
+                    <div class="flex space_between ">
+                        <div class="factor_card">
+                            <h2>Enroll SMS Factor</h2>
+                            <form method="POST" action="enroll_new_factor">
+                                <div class="flex-column">
+                                    <div class="flex">
+                                        <input class="text_input" type="text" id="phone_number" name="phone_number"
+                                            placeholder="Phone Number" required>
+                                    </div>
+                                    <div class="flex m-top-20">
+                                        <button type="submit" name="type" value="sms"
+                                            class="button button-outline button-sm">Enroll New
+                                            Factor</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="flex space-between">
-                            <a href="/enroll_factor">
-                                <button class="button button-outline button-sm">Enroll New Factor</button>
-                            </a>
-                            <a href="/clear_session">
-                                <button class="button button-outline button-sm">Clear Factors</button>
-                            </a>
+                        <div class="factor_card">
+                            <h2>Enroll TOTP Factor</h2>
+                            <form method="POST" action="enroll_new_factor">
+                                <div class="flex-column">
+                                    <div class="flex">
+                                        <input class="text_input" type="text" id="totp_issuer" name="totp_issuer"
+                                            placeholder="TOTP Issuer" required>
+                                    </div>
+                                    <div class="flex">
+                                        <input class="text_input" type="text" id="totp_user" name="totp_user"
+                                            placeholder="User Email" required>
+                                    </div>
+                                    <div class="flex m-top-20">
+                                        <button type="submit" name="type" value="totp"
+                                            class="button button-outline button-sm">Enroll New Factor</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
-                <div class="flex-column">
-                    <% if (factors.length> 0 ) { %>
-                        <% for (var i=0; i < factors.length; i++) { %>
-                            <div class="width-40vw">
-                                <a href="/factor_detail/<%=factors[i].id%>" class="button login_button">
-                                    <%=factors[i].type%> | <%=factors[i].id%>
-                                </a>
-                            </div>
-                            <% }%>
-                                <%} else { %>
-                                    <div class="mt-20 card width-40vw">
-                                        <p style="text-align: center; color: gray;">No Current Factors</p>
-                                    </div>
-                                    <% } %>
                 </div>
             </div>
         </div>

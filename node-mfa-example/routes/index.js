@@ -21,14 +21,17 @@ router.get('/', function (req, res) {
     res.render('index.ejs', { title: 'Home', factors: session.factors })
 })
 
-router.post('/enroll_factor', async function (req, res) {
+router.get('/enroll_factor', (req, res) => {
+    res.render('enroll_factor.ejs')
+})
+
+router.post('/enroll_new_factor', async function (req, res) {
     let factor_type
-    let phone_number
     let new_factor
 
     if (req.body.type === 'sms') {
         factor_type = req.body.type
-        phone_number = '+1' + req.body.phone_number
+        const phone_number = '+1' + req.body.phone_number
 
         new_factor = await workos.mfa.enrollFactor({
             type: factor_type,
@@ -36,8 +39,8 @@ router.post('/enroll_factor', async function (req, res) {
         })
     } else if (req.body.type === 'totp') {
         factor_type = req.body.type
-        issuer = req.body.totp_issuer
-        user = req.body.totp_user
+        const issuer = req.body.totp_issuer
+        const user = req.body.totp_user
 
         new_factor = await workos.mfa.enrollFactor({
             type: factor_type,
@@ -87,8 +90,16 @@ router.post('/challenge_factor', async (req, res) => {
 })
 
 router.post('/verify_factor', async (req, res) => {
-    const code = req.body.code
+    const buildCode = (codeItems) => {
+        let code = []
+        for (const item in codeItems) {
+            code.push(codeItems[item])
+        }
+        return code.join('')
+    }
+    const code = buildCode(req.body)
     const challenge_id = session.challenge_id
+
     const verify_factor = await workos.mfa.verifyFactor({
         authenticationChallengeId: challenge_id,
         code: code,
@@ -101,6 +112,11 @@ router.post('/verify_factor', async (req, res) => {
 
 router.get('/challenge_success', async (req, res) => {
     res.render('challenge_success.ejs', { title: 'Challenge Success' })
+})
+
+router.get('/clear_session', (req, res) => {
+    session.factors = []
+    res.redirect('/')
 })
 
 export default router
