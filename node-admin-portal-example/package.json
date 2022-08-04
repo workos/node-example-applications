@@ -1,7 +1,7 @@
 {
   "name": "node-admin-portal-example-app",
   "version": "1.0.0",
-  "description": "Example NodeJS Directory Sync App using WorkOS",
+  "description": "Example Node.js Admin Portal App using WorkOS",
   "main": "index.js",
   "type": "module",
   "scripts": {
