@@ -1,7 +1,7 @@
 {
   "name": "node-sso-example-app",
   "version": "1.0.0",
-  "description": "Example NodeJS SSO App using WorkOS",
+  "description": "Example Node.js SSO App using WorkOS",
   "main": "index.js",
   "type": "module",
   "scripts": {
