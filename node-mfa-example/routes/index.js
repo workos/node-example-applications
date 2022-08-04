@@ -59,11 +59,13 @@ router.get('/factor_detail/:id', async (req, res) => {
     })[0]
 
     session.current_factor = factor
+
     res.render('factor_detail.ejs', { title: 'Factor Detail', factor: factor })
 })
 
 router.post('/challenge_factor', async (req, res) => {
     let message
+
     if (session.current_factor.type === 'sms') {
         message = req.body.sms_message
         session.sms_message = message
@@ -72,6 +74,7 @@ router.post('/challenge_factor', async (req, res) => {
             authenticationFactorId: session.current_factor.id,
             smsTemplate: message,
         })
+
         session.challenge_id = challenge.id
     }
 
@@ -82,7 +85,7 @@ router.post('/challenge_factor', async (req, res) => {
         const challenge = await workos.mfa.challengeFactor({
             authenticationFactorId: session.current_factor.id,
         })
-        console.log(JSON.stringify(challenge))
+
         session.challenge_id = challenge.id
     }
 
@@ -97,6 +100,7 @@ router.post('/verify_factor', async (req, res) => {
         }
         return code.join('')
     }
+
     const code = buildCode(req.body)
     const challenge_id = session.challenge_id
 
@@ -104,6 +108,7 @@ router.post('/verify_factor', async (req, res) => {
         authenticationChallengeId: challenge_id,
         code: code,
     })
+
     res.render('challenge_success.ejs', {
         title: 'Challenge Success',
         verify_factor: verify_factor,
