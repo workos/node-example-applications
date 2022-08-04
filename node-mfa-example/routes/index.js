@@ -59,7 +59,6 @@ router.get('/factor_detail/:id', async (req, res) => {
     })[0]
 
     session.current_factor = factor
-
     res.render('factor_detail.ejs', { title: 'Factor Detail', factor: factor })
 })
 
