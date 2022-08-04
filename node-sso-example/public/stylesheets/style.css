@@ -277,12 +277,6 @@ div.text_box {
 
 .logged_in_nav img {
   height: 50px;
-  border-radius: 50%;
-  border: 2px solid #2f2e2e;
-}
-
-.logged_in_nav img:hover {
-  border: 2px solid #555555;
 }
 
 .nav-item {

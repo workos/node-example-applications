@@ -1,16 +1,14 @@
 {
-  "name": "node-admin-portal-example-app",
+  "name": "node-sso-example-app",
   "version": "1.0.0",
-  "description": "Example NodeJS Directory Sync App using WorkOS",
+  "description": "Example NodeJS SSO App using WorkOS",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "WorkOS",
   "dependencies": {
     "express": "^4.18.1",
     "ejs": "^3.1.8",

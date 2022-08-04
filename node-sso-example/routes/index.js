@@ -16,7 +16,7 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 const clientID = process.env.WORKOS_CLIENT_ID
-const connection = ''
+const connection = 'conn_01G2TM1BYXCPFB5Y12WN7FK2DY'
 const redirectURI = 'http://localhost:8000/callback'
 const state = 'thisguysemail@gmail.com'
 
