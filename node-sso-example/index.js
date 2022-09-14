@@ -18,5 +18,5 @@ app.use(morgan('dev'))
 app.use('/', router)
 
 app.listen(port, () => {
-    console.log(`⚡️ [server]: Server is running at https://will-dersh.herokuapp.com/`)
+    console.log(`⚡️ [server]: Server is running at http://localhost:${port}`)
 })
