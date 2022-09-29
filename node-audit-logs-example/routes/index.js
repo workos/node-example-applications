@@ -21,11 +21,17 @@ router.get('/', function (req, res) {
     res.render('login.ejs')
 })
 
-router.post('/set_org', (req, res) => {
-    session.org = req.body.org
-//get customer by org id
+router.post('/set_org', async (req, res) => {
+    const org = await workos.organizations.getOrganization(
+        req.body.org
+    );
+
+    session.orgId = org.id
+    session.orgName = org.name
+
     res.render('send_events.ejs', {
-        org: session.org
+        orgName: org.name,
+        orgId: org.id
     })
 })
 
