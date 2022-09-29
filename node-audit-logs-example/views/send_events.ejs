@@ -100,7 +100,7 @@
     const events = document.querySelectorAll(".event_button")
     events.forEach(event => {
         event.addEventListener("click", (event) => {
-            console.log('EVENT ID', event.target.id)
+            console.log('EVENT ID', event.target.closest('button').id)
             fetch('/send_event', {
                 method: 'POST',
                 headers: {
