@@ -35,4 +35,15 @@ router.post('/set_org', async (req, res) => {
     })
 })
 
+router.post('/send_event', async (req, res) => {
+    
+    console.log('Test', req.body)
+    // res.render('login.ejs')
+})
+
 export default router
+
+// org_01G2TKRPR28XB702EF71EA8BY6
+
+
+

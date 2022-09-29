@@ -63,34 +63,32 @@
                         </div>
                     </div>
                     <hr style="height:0.5px;width:100%;">
-                    <form action="/send_event" method="POST">
                         <div class="flex margin-y-15">                                                                
                             <div>
-                                <button class="box" name="event" id="user_signed_in" value="0" type="submit">                            
+                                <button class="box event_button" name="event" id="user_signed_in" type="submit">                            
                                     <div class="flex width-100p">
                                         <p>User Signed In</p> 
                                     </div>                           
                                 </button>                    
-                                <button class="box" name="event" id="user_logged_out" value="1" type="submit">                            
+                                <button class="box event_button" name="event" id="user_logged_out" type="submit">                            
                                     <div class="flex width-100p">
                                         <p>User Logged Out</p> 
                                     </div>                           
                                 </button> 
                             </div>
                             <div>
-                                <button class="box" name="event" id="user_org_deleted" value="2" type="submit">                            
+                                <button class="box event_button" name="event" id="user_org_deleted" type="submit">                            
                                     <div class="flex width-100p">
                                         <p>User Organization Deleted</p> 
                                     </div>                           
                                 </button>                    
-                                <button class="box" name="event" id="user_connection_deleted" value="3" type="submit">                            
+                                <button class="box event_button" name="event" id="user_connection_deleted" type="submit">                            
                                     <div class="flex width-100p">
                                         <p>User Connection Deleted</p> 
                                     </div>                           
                                 </button> 
                             </div>
                         </div>
-                    </form>
                 </div>
                 
             </div>
@@ -98,5 +96,19 @@
     </div>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </body>
-
+<script>
+    const events = document.querySelectorAll(".event_button")
+    events.forEach(event => {
+        event.addEventListener("click", (event) => {
+            console.log('EVENT ID', event.target.id)
+            fetch('/send_event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({id: event.target.id})
+            })
+        })
+    });   
+</script>
 </html>
