@@ -77,7 +77,7 @@
                                 </button> 
                             </div>
                             <div>
-                                <button class="box event_button" name="event" id="user_org_deleted" type="submit">                            
+                                <button class="box event_button" name="event" id="user_organization_deleted" type="submit">                            
                                     <div class="flex width-100p">
                                         <p>User Organization Deleted</p> 
                                     </div>                           
@@ -100,13 +100,12 @@
     const events = document.querySelectorAll(".event_button")
     events.forEach(event => {
         event.addEventListener("click", (event) => {
-            console.log('EVENT ID', event.target.closest('button').id)
             fetch('/send_event', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({id: event.target.id})
+                body: JSON.stringify({eventId: event.target.closest('button').id})
             })
         })
     });   
