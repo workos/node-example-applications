@@ -62,6 +62,37 @@ router.post('/send_event', async (req, res) => {
     console.log(event)
 })
 
+router.get('/export_events', (req, res) => {
+    res.render('export_events.ejs', {
+        orgName: session.orgName,
+        orgId: session.orgId
+    })
+})
+
+router.get('/generate_csv', async (req, res) => {
+    const auditLogExport = await workos.auditLogs.createExport({
+        organization_id: session.orgId,
+        range_start: new Date('2022-07-02T18:09:06.996Z'),
+        range_end: new Date('2022-09-30T18:09:06.996Z'),
+    });
+
+    session.exportId = auditLogExport.id
+    console.log(auditLogExport)
+})
+
+router.get('/access_csv', async () => {
+    const auditLogExport = await workos.auditLogs.getExport(
+        session.exportId,
+    );   
+
+    console.log(auditLogExport)
+})
+
+router.get('/logout', (req, res) => {
+    session.orgId = null
+    res.render('login.ejs')
+})
+
 export default router
 
 
