@@ -96,6 +96,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </body>
+
 <script>
     const events = document.querySelectorAll(".event_button")
     events.forEach(event => {
@@ -108,6 +109,7 @@
                 body: JSON.stringify({eventId: event.target.closest('button').id})
             })
         })
-    });   
+    })
 </script>
+
 </html>

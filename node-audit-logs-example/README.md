@@ -1,6 +1,6 @@
-# Node.js Example App with MFA powered by WorkOS
+# Node.js Example App with Audit Logs powered by WorkOS
 
-An example Node application demonstrating how to use the [WorkOS MFA API](https://workos.com/docs/mfa/guide) using the [Node SDK](https://github.com/workos/workos-node) to authenticate users.
+An example Node.js application demonstrating how to use the [WorkOS Node.js SDK](https://github.com/workos/workos-node) to send and retrieve Audit Log events. This app is not meant to show a real-world example of an Audit Logs implementation, but rather to show concrete examples of how events can be sent using the Node.js SDK.
 
 ## Prerequisites
 
@@ -22,10 +22,10 @@ An example Node application demonstrating how to use the [WorkOS MFA API](https:
     git clone git@github.com:workos/node-example-applications.git
     ```
 
-2. Navigate to MFA app within the cloned repo.
+2. Navigate to Audit Logs app within the cloned repo.
 
     ```bash
-    $ cd node-example-applications/node-mfa-example
+    $ cd node-example-applications/node-audit-logs-example
     ```
 
 3. Install the dependencies.
@@ -51,18 +51,24 @@ An example Node application demonstrating how to use the [WorkOS MFA API](https:
 npm start
 ```
 
-## Using the MFA application
+## Audit Logs setup 
 
-This application is meant to showcase the MFA API and how to interact with it using the WorkOS Node SDK. It is not meant to show a real-life example of how MFA should be implemented.
+Follow the [Audit Logs configuration steps](https://workos.com/docs/audit-logs/emit-an-audit-log-event/sign-in-to-your-workos-dashboard-account-and-configure-audit-log-event-schemas) to set up the following 5 events that are sent with this example:
 
-The app supports two types of MFA flows, SMS and Time-based One Time Password (TOTP).
+Action title: "user.signed_in" | Target type: "team"
+Action title: "user.logged_out" | Target type: "team"
+Action title: "user.organization_set" | Target type: "team"
+Action title: "user.organization_deleted" | Target type: "team"
+Action title: "user.connection_deleted" | Target type: "team"
 
-SMS: The SMS flow requires you to send a code via text message. You can customize this message, but the message must include the string "{{code}}". This string of characters tells the WorkOS API to generate a random code that will be populated automatically. If "{{code}}" is not included in the message, the authentication cannot be completed.
+Next, take note of the Organization ID for the Org which you will be sending the Audit Log events for. This ID gets entered into the splash page of the example application.
 
-TOTP: This type of authentication requires the use of a 3rd party authentication app (1Password, Authy, Google Authenticator, Microsoft Authenticator, Duo, etc). Scan the QR code from the Factor Details page to create the corresponding factor in the 3rd party app, then enter the time-based password when prompted in this MFA application.
+Once you enter the Organization ID and submit it, you will be brought to the page where you'll be able to send the audit log events that were just configured. You'll also notice that the action of setting the Organization triggered an Audit Log already. Click the buttons to send the respective events.
+
+To obtain a CSV of the Audit Log events that were sent for the last 30 days, click the "Export Events" button. This will bring you to a new page where you can download the events. Downloading the events is a 2 step process. First you need to create the report by clicking the "Generate CSV" button. Then click the "Access CSV" button to download a CSV of the Audit Log events for the selected Organization for the past 30 days.
 
 ## Need help?
 
-First, make sure to reference the MFA docs at https://workos.com/docs/mfa/guide.
+First, make sure to reference the Audit Logs docs at https://workos.com/docs/audit-logs.
 
-If you get stuck and aren't able to resolve the issue by reading our API reference or tutorials, you can reach out to us at support@workos.com and we'll lend a hand.
+If you get stuck and aren't able to resolve the issue by reading our docs or API reference, you can reach out to us at support@workos.com and we'll lend a hand.
