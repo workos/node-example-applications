@@ -72,12 +72,11 @@ router.get('/export_events', (req, res) => {
 
 router.get('/generate_csv', async (req, res) => {
     const now = new Date()
-    const previousMonth = now.setMonth(now.getMonth() - 1)
-
+    const monthAgo = now.setMonth(now.getMonth() - 1)
 
     const auditLogExport = await workos.auditLogs.createExport({
         organization_id: session.orgId,
-        range_start: new Date('2022-07-02T18:09:06.996Z'),
+        range_start: new Date(monthAgo).toISOString(),
         range_end: new Date().toISOString(),
     })
 
