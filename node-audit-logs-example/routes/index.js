@@ -1,5 +1,6 @@
 import express from 'express'
 import session from 'express-session'
+import open from 'open'
 import { WorkOS } from '@workos-inc/node'
 import { user_signed_in, user_logged_out, user_organization_deleted, user_connection_deleted } from '../audit_log_events.js'
 
@@ -89,9 +90,8 @@ router.get('/access_csv', async (req, res) => {
         session.exportId,
     )   
 
-    console.log(auditLogExport)
-
-    res.redirect(auditLogExport.url)
+    console.log(auditLogExport.url)
+    await open(auditLogExport.url)
 })
 
 router.get('/logout', (req, res) => {
