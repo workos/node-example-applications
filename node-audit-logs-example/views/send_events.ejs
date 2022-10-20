@@ -90,7 +90,7 @@
                             </div>
                         </div>
                 </div>
-                
+                <div id="snackbar">Log Event Sent</div>
             </div>
         </div>
     </div>
@@ -101,6 +101,7 @@
     const events = document.querySelectorAll(".event_button")
     events.forEach(event => {
         event.addEventListener("click", (event) => {
+
             fetch('/send_event', {
                 method: 'POST',
                 headers: {
@@ -108,6 +109,10 @@
                 },
                 body: JSON.stringify({eventId: event.target.closest('button').id})
             })
+
+            let x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500);
         })
     })
 </script>
