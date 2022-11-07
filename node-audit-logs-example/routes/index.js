@@ -59,8 +59,6 @@ router.post('/send_event', async (req, res) => {
         session.orgId || 'org_01G2TKRPR28XB702EF71EA8BY6',
         event
     )
-
-    console.log(event)
 })
 
 router.get('/export_events', (req, res) => {
@@ -81,7 +79,6 @@ router.get('/generate_csv', async (req, res) => {
     })
 
     session.exportId = auditLogExport.id
-    console.log(auditLogExport)
 })
 
 router.get('/access_csv', async (req, res) => {
@@ -89,7 +86,6 @@ router.get('/access_csv', async (req, res) => {
         session.exportId,
     )   
 
-    console.log(auditLogExport.url)
     await open(auditLogExport.url)
 })
 
