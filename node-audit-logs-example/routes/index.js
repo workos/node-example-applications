@@ -55,10 +55,14 @@ router.post('/send_event', async (req, res) => {
             break
     }
 
-    await workos.auditLogs.createEvent(
-        session.orgId || 'org_01G2TKRPR28XB702EF71EA8BY6',
-        event
-    )
+    try {
+        await workos.auditLogs.createEvent(
+            session.orgId || 'org_01G2TKRPR28XB702EF71EA8BY6',
+            event
+        )
+    } catch (error) {
+        console.error(error);
+    }
 })
 
 router.get('/export_events', (req, res) => {
@@ -84,7 +88,7 @@ router.get('/generate_csv', async (req, res) => {
 router.get('/access_csv', async (req, res) => {
     const auditLogExport = await workos.auditLogs.getExport(
         session.exportId,
-    )   
+    )
 
     await open(auditLogExport.url)
 })
