@@ -63,6 +63,8 @@ router.post('/send_event', async (req, res) => {
     } catch (error) {
         console.error(error);
     }
+
+    res.send('OK')
 })
 
 router.get('/export_events', (req, res) => {
