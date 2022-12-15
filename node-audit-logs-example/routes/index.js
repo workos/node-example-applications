@@ -75,7 +75,6 @@ router.get('/export_events', (req, res) => {
 })
 
 router.get('/generate_admin_portal_link', async (req, res) => {
-    console.log("Session orgId", session.orgId)
     const { link } = await workos.portal.generateLink({
         organization: session.orgId,
         intent: "audit_logs"
