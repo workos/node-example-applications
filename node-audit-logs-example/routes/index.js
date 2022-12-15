@@ -74,6 +74,16 @@ router.get('/export_events', (req, res) => {
     })
 })
 
+router.get('/generate_admin_portal_link', async (req, res) => {
+    console.log("Session orgId", session.orgId)
+    const { link } = await workos.portal.generateLink({
+        organization: session.orgId,
+        intent: "audit_logs"
+    })
+
+    res.redirect(link)
+})
+
 router.get('/generate_csv', async (req, res) => {
     const now = new Date()
     const monthAgo = now.setMonth(now.getMonth() - 1)
