@@ -3,6 +3,7 @@ const user_signed_in = {
   occurred_at: new Date().toISOString(),
   actor: {
     type: "user",
+    name: "Myrna Autrey",
     id: "user_01GBNJC3MX9ZZJW1FSTF4C5938",
   },
   targets: [
@@ -22,6 +23,7 @@ const user_logged_out = {
   occurred_at: new Date().toISOString(),
   actor: {
     type: "user",
+    name: "Myrna Autrey",
     id: "user_01GBNJC3MX9ZZJW1FSTF4C5938",
   },
   targets: [
@@ -41,6 +43,7 @@ const user_organization_set = {
   occurred_at: new Date().toISOString(),
   actor: {
     type: "user",
+    name: "Myrna Autrey",
     id: "user_01GBNJC3MX9ZZJW1FSTF4C5938",
   },
   targets: [
@@ -60,6 +63,7 @@ const user_organization_deleted = {
   occurred_at: new Date().toISOString(),
   actor: {
     type: "user",
+    name: "Myrna Autrey",
     id: "user_01GBNJC3MX9ZZJW1FSTF4C5938",
   },
   targets: [
@@ -79,6 +83,7 @@ const user_connection_deleted = {
   occurred_at: new Date().toISOString(),
   actor: {
     type: "user",
+    name: "Myrna Autrey",
     id: "user_01GBNJC3MX9ZZJW1FSTF4C5938",
   },
   targets: [
