@@ -63,6 +63,8 @@ router.post('/send_event', async (req, res) => {
     } catch (error) {
         console.error(error);
     }
+
+    res.send('OK')
 })
 
 router.get('/export_events', (req, res) => {
@@ -70,6 +72,15 @@ router.get('/export_events', (req, res) => {
         orgName: session.orgName,
         orgId: session.orgId
     })
+})
+
+router.get('/generate_admin_portal_link', async (req, res) => {
+    const { link } = await workos.portal.generateLink({
+        organization: session.orgId,
+        intent: "audit_logs"
+    })
+
+    res.redirect(link)
 })
 
 router.get('/generate_csv', async (req, res) => {

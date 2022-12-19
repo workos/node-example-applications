@@ -11,6 +11,7 @@
   "author": "WorkOS",
   "dependencies": {
     "@workos-inc/node": "^2.11.0",
+    "casual": "^1.6.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
