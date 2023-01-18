@@ -10,31 +10,24 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.post('/find-enterprise', async (req, res) => {
-    const organizationID = req.body.orgID
-
-    try {
-        const organization = await workos.organizations.getOrganization(
-            organizationID
-        );
-        global.organization = organization
-        res.render('logged_in.ejs')
-    } catch (error) {
-        res.render('index.ejs', {
-            error: error
-        })
-    }
-})
-
 router.post('/provision-enterprise', async (req, res) => {
-    const organizationName = req.body.orgName
+    const organizationName = req.body.org
     const domains = req.body.domain.split(' ')
 
-    global.organization = await workos.organizations.createOrganization({
-        name: organizationName,
+    const organizations = await workos.organizations.listOrganizations({
         domains: domains,
     })
-    res.render('logged_in.ejs')
+
+    if (organizations.data.length === 0) {
+        global.organization = await workos.organizations.createOrganization({
+            name: organizationName,
+            domains: domains,
+        })
+        res.render('logged_in.ejs')
+    } else {
+        global.organization = organizations.data[0]
+        res.render('logged_in.ejs')
+    }
 })
 
 router.get('/sso-admin-portal', async (_req, res) => {
