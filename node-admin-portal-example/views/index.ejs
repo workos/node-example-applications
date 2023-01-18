@@ -9,13 +9,24 @@
                 <img src="../public/images/workos-logo-with-text.png" alt="workos logo">
             </div>
             <h2>Node.js Admin Portal Example App</h2>
+            <form method="POST" action="/find-enterprise">
+                <div class='flex_column'>
+                    
+                    <div>
+                        <input type="text" placeholder="<% if (locals.error) { %> <%=error.message%> <% } else { %> <%='Organization ID'%> <% } %>" id="orgID" name="orgID"class="text_input" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="button">Find Organization and Log In</button>
+                    </div>
+                </div>
+            </form>
             <form method="POST" action="/provision-enterprise">
                 <div class='flex_column'>
                     <div>
-                        <input type="text" placeholder='Enter Your Organization Name to Provision' id="org" name="org" class="text_input" required>
+                        <input type="text" placeholder="Organization Name" id="orgName" name="orgName" class="text_input" required>
                     </div>
                     <div>
-                        <input type="text" placeholder='Enter a Space Separated List of Domains Used By the Org' id="domain" name="domain" class="text_input text_input_2" required>
+                        <input type="text" placeholder="A Space Separated List of User Email Domains" id="domain" name="domain" class="text_input text_input_2" required>
                     </div>
                     <div>
                         <button type="submit" class="button">Create Organization and Log In</button>
