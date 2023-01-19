@@ -3,22 +3,74 @@
         <link rel="stylesheet" href="../public/stylesheets/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     </head>
-    <body class="container_login">
-        <div class='flex_column'>
-            <div class="flex heading_div">
-                <img src="../public/images/workos-logo-with-text.png" alt="workos logo">
-            </div>
-            <h2>Node.js Directory Sync Example App</h2>
-            <form method="POST" action="/passwordless-auth">
-                <div class='flex_column'>
-                    <hr style="width:100%">
-                    <a href="/webhooks" class="button button-sm login_button button-outline">Test Webhooks</a>
-                    <hr style="width:100%">
-                        <% for(let i=0; i<directories.length; i++) {%>
-                            <a href="/directory/<%=directories[i].id%>" class="button button-sm login_button"><%= directories[i].name %></a>
-                        <% } %>    
+    <body >
+        <div class="logged_in_nav">
+            <div class="flex space-between width-100vw">
+                <div><p>Python Flask Directory Sync Example App</p></div>
+                <div class="flex">
+                    <div>
+                        <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
+                    </div>
+                    <div>
+                        <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
+                            Reference</button></a>
+                    </div>
+                    <div>
+                        <a href="https://workos.com/blog" target="_blank"><button
+                            class='button nav-item blog-nav-button'>Blog</button></a>
+                    </div>
+                    <div>
+                        <a href="https://workos.com/" target="_blank">
+                            <img class="nav-image" src="../public/images/workos_favicon.png" alt="link to workos.com">
+                        </a> 
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
+        <div class='flex_column  height-70vh'>
+            <div class="flex width-70vw space-between">
+                <div>
+                    <h2>Select a Directory</h2>
+                </div>
+                <div>
+                    <a href="/webhooks" class="button button-outline">Test Webhooks</a>
+                </div>
+            </div>
+            <div class='flex_column card width-65vw'>                
+                <div>
+                    <table class="width-65vw">
+                        <tr>
+                        <th>Organization</th>
+                        <th>ID</th>
+                        <th>View Settings</th>
+                        </tr>
+                        <% for(let i=0; i<directories.length; i++) {%>         
+                        <tr>
+                            <td><%= directories[i].name %></td>
+                            <td><%= directories[i].id %></td>                
+                            <td><a class="button button-outline" href="/directory/<%=directories[i].id%>"><i icon-name="settings-2" class="stroke_width=1"></i></a></td>
+                        </tr>
+                        <% } %>                     
+                    </table>   
+                </div>                     
+                <div class="flex flex-end width-65vw">
+                    <% if ( after ) { %>
+                    <div>
+                        <a href="/?after=<%=after%>"><button class="button page-title">Previous</button></a>
+                    </div>                        
+                    <% } %>
+                    <% if ( before ) { %>
+                    <div>
+                        <a href="/?before=<%=before%>"><button class="button page-title">Next</button></a>
+                    </div>                    
+                    <% } %>          
+                </div>    
+            </div>
+        </div>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script>
+            lucide.createIcons();
+        </script>
     </body>
 </html>
+
