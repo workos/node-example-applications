@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
     let before = req.query.before
     let after = req.query.after
 
-    let directories = await workos.directorySync.listDirectories({ limit: 1, before: before, after: after, order: null })
+    const directories = await workos.directorySync.listDirectories({ limit: 5, before: before, after: after, order: null })
   
     before = directories.listMetadata.before
     after = directories.listMetadata.after
