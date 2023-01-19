@@ -28,10 +28,19 @@ io.on('connection', (socket) => {
 })
 
 app.get('/', async (req, res) => {
-    const directories = await workos.directorySync.listDirectories()
+    let before = req.query.before
+    let after = req.query.after
+
+    const directories = await workos.directorySync.listDirectories({ limit: 5, before: before, after: after, order: null })
+  
+    before = directories.listMetadata.before
+    after = directories.listMetadata.after
+
     res.render('index.ejs', {
         title: 'Home',
         directories: directories.data,
+        before: before,
+        after: after
     })
 })
 
