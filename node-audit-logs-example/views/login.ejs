@@ -1,32 +1,3 @@
-<!-- <html>
-
-<head>
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-</head>
-
-<body class="container_login">
-    <div class='flex_column'>
-        <div class="flex heading_div">
-            <img src="../public/images/workos-logo-with-text.png" alt="workos logo">
-        </div>
-
-        <h2>Node Audit Logs Example App</h2>
-        <form method="POST" action="/set_org">
-            <div class='flex_column'>
-                <div>
-                    <input type="text" id="org" name="org" class="text-input">
-                </div>
-                <div>
-                    <button type="submit" class="button">Submit Organization ID</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</body>
-
-</html> -->
-
 <html>
 
 <head>
@@ -98,26 +69,26 @@
                           <th>ID</th>
                           <th>View Settings</th>
                         </tr>
-                        <!-- {% for i in organizations %}            
-                          <tr>
-                            <td>{{ i['name'] }}</td>
-                            <td>{{ i['id'] }}</td>                
-                            <td><a class="button button-outline width-95" href="/set_org?id={{i['id']}}">{{ lucide.icon('settings-2', stroke_width=1) }}</a></td>
-                          </tr>
-                        {% endfor %}                     -->
+                        <% for(let i=0; i<organizations.length; i++) {%>         
+                            <tr>
+                                <td><%= organizations[i].name %></td>
+                                <td><%= organizations[i].id %></td>                
+                                <td><a class="button button-outline" href="/REPLACE/<%=organizations[i].id%>"><i icon-name="settings-2" class="stroke_width=1"></i></a></td>
+                            </tr>
+                        <% } %>
                       </table>   
                 </div>                     
                 <div class="flex flex-end width-65vw">
-                    <!-- {% if after %}
-                    <div>
-                        <a href="/?after={{after}}"><button class="button page-title">Previous</button></a>
-                    </div>                        
-                    {% endif %}
-                    {% if before %}
-                    <div>
-                        <a href="/?before={{before}}"><button class="button page-title">Next</button></a>
-                    </div>                    
-                    {% endif %}             -->
+                    <% if ( after ) { %>
+                        <div>
+                            <a href="/?after=<%=after%>"><button class="button page-title">Previous</button></a>
+                        </div>                        
+                        <% } %>
+                        <% if ( before ) { %>
+                        <div>
+                            <a href="/?before=<%=before%>"><button class="button page-title">Next</button></a>
+                        </div>                    
+                    <% } %>      
                 </div>    
             </div>
         </div>

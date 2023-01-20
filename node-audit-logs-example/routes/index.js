@@ -18,8 +18,23 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 
-router.get('/', function (req, res) {
-    res.render('login.ejs')
+router.get('/', async (req, res) => {
+    let before = req.query.before
+    let after = req.query.after
+
+    const organizations = await workos.organizations.listOrganizations({ limit: 2, before: before, after: after, order: null })
+  
+    before = organizations.listMetadata.before
+    after = organizations.listMetadata.after
+
+    console.log(organizations)
+
+    res.render('login.ejs', {
+        title: 'Home',
+        organizations: organizations.data,
+        before: before,
+        after: after
+    })
 })
 
 router.post('/set_org', async (req, res) => {
