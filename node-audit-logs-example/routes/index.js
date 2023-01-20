@@ -142,7 +142,8 @@ router.get('/access_csv', async (req, res) => {
 router.get('/logout', (req, res) => {
     session.orgId = null
     session.orgName = null
-    res.render('login.ejs')
+    res.redirect("/")
+
 })
 
 export default router
