@@ -139,11 +139,20 @@ router.get('/access_csv', async (req, res) => {
     await open(auditLogExport.url)
 })
 
+router.get('/events', async (req, res) => {
+    const link = await workos.portal.generateLink({
+        organization: "org_01GF6GSVK3QZ9RBD5QQ81WCYBN",
+        intent: "audit_logs"
+    })
+
+    res.redirect(link.link)
+})
+
 router.get('/logout', (req, res) => {
     session.orgId = null
     session.orgName = null
+    
     res.redirect("/")
-
 })
 
 export default router
