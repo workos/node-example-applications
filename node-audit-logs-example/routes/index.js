@@ -19,6 +19,26 @@ app.use(
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 
 router.get('/', async (req, res) => {
+    // try {
+    //     const link = await workos.portal.generateLink({
+    //         organization: "org_01GF6GSVK3QZ9RBD5QQ81WCYBN",
+    //         intent: "audit_logs"
+    //     })
+
+    //     //flask
+    //     // today = datetime.today()
+    //     // last_month = today - timedelta(days=30)
+
+    //     res.render('send_events.ejs', {
+    //         link: link,
+    //         orgId: "REPLACE",
+    //         orgName: "REPLACE"
+    //     })
+    // } catch (error) {
+    //     console.error(error);
+    // }
+
+
     let before = req.query.before
     let after = req.query.after
 
@@ -37,9 +57,9 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.post('/set_org', async (req, res) => {
+router.get('/set_org', async (req, res) => {
     const org = await workos.organizations.getOrganization(
-        req.body.org
+        req.query.id
     );
 
     session.orgId = org.id
@@ -121,6 +141,7 @@ router.get('/access_csv', async (req, res) => {
 
 router.get('/logout', (req, res) => {
     session.orgId = null
+    session.orgName = null
     res.render('login.ejs')
 })
 
