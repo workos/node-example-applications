@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     let after = req.query.after
 
     const organizations = await workos.organizations.listOrganizations({ 
-        limit: 2, 
+        limit: 5, 
         before: before, 
         after: after, 
         order: null 
@@ -57,25 +57,41 @@ router.get('/set_org', async (req, res) => {
     })
 })
 
-// FIX
 router.post('/send_event', async (req, res) => {
-    console.log('SEND EVENT POST ENDPOINT SUBMIT')
-    // const eventId = req.body.eventId
+    const { eventAction, eventVersion, actorName, actorType, targetName, targetType } = req.body
 
+    const event = {
+        "action": eventAction,
+        "version": Number(eventVersion),
+        "occurred_at": new Date().toISOString(),
+        "actor": {
+            "type": actorType,
+            "name": actorName,
+            "id": "user_12345678901234567890123456",
+        },
+        "targets": [
+            {
+                "type": targetType,
+                "name": targetName,
+                "id": "team_12345678901234567890123456",
+            },
+        ],
+        "context": {
+            "location": "123.123.123.123",
+            "user_agent": "Chrome/104.0.0.0",
+        },
+    }
 
-    // try {
-    //     await workos.auditLogs.createEvent(
-    //         session.orgId || 'org_01G2TKRPR28XB702EF71EA8BY6',
-    //         event
-    //     )
-    // } catch (error) {
-    //     console.error(error);
-    // }
-
-    res.send('OK')
+    try {
+        await workos.auditLogs.createEvent(
+            session.orgId,
+            event
+        )
+    } catch (error) {
+        console.error(error.message);
+    }
 })
 
-//
 router.post('/generate_csv', async (req, res) => {
     const { actions, actors, targets, rangeStart, rangeEnd } = req.body
 
@@ -117,7 +133,6 @@ router.get('/event-stream', async (req, res) => {
 router.get('/logout', (req, res) => {
     session.orgId = null
     session.orgName = null
-    session.orgLink = null
     session.exportId = null
 
     res.redirect("/")

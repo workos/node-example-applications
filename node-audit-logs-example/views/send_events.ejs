@@ -84,29 +84,32 @@
                             <div id="send-events" name='#send-events' data-tab-content class="flex_column">                          
                             <div>
                                 <h3>Send Events</h3>
-                                <p>Configure and send a "User Organization Deleted" Event</p>  
                             </div>
                             <hr style="height:0.5px;width:100%;margin-bottom:25px;">                                                 
-                            <form action="/send_event" method="POST" id="send-event-form">                           
+                            <form id="send-event-form" onsubmit="onSendEventSubmit()">
+                                <div class="event-form-input-group flex-column flex-start">
+                                    <div><label for="event-action">Event Action</label></div>
+                                    <div><input required name="event-action" class="text-input" id="event-action" type="text" placeholder="Defined in your WorkOS Dashboard, e.g. user.organization_set"></div>
+                                </div>                           
                                 <div class="event-form-input-group flex-column flex-start">
                                     <div><label for="event-version">Event Version</label></div>
-                                    <div><input required name="event-version" class="text-input" type="text" placeholder="[Integer] schema version of the event"></div>
+                                    <div><input required name="event-version" class="text-input" id="event-version" type="text" placeholder="Defined in your WorkOS Dashboard, e.g. 1"></div>
                                 </div>
                                 <div class="event-form-input-group flex-column flex-start">
                                     <div><label for="actor-name">Actor Name</label></div>
-                                    <div><input required name="actor-name" class="text-input" type="text" placeholder="Name of the user who completed the action"></div>
+                                    <div><input required name="actor-name" class="text-input" id="actor-name" type="text" placeholder="Name of the user who completed the action"></div>
                                 </div>
                                 <div class="event-form-input-group flex-column flex-start">
                                     <div><label for="actor-type">Actor Type</label></div>
-                                    <div><input required name="actor-type" class="text-input" type="text" placeholder="Type of the user who completed the action"></div>
+                                    <div><input required name="actor-type" class="text-input" id="actor-type" type="text" placeholder="Type of the user who completed the action"></div>
                                 </div>
                                 <div class="event-form-input-group flex-column flex-start">
                                     <div><label for="target-name">Target Name</label></div>
-                                    <div><input required name="target-name" class="text-input" type="text" placeholder="Name of the target"></div>
+                                    <div><input required name="target-name" class="text-input" id="target-name" type="text" placeholder="Name of the target"></div>
                                 </div>
                                 <div class="event-form-input-group flex-column flex-start">
                                     <div><label for="target-type">Target Type</label></div>
-                                    <div><input required name="target-type" class="text-input" type="text" placeholder="Defined in WorkOS Dashboard"></div>
+                                    <div><input required name="target-type" class="text-input" id="target-type" type="text" placeholder="Defined in your WorkOS Dashboard, e.g. team"></div>
                                 </div>                                                  
                                 <div>
                                     <button class="button button-outline" name="event" id="user_org_deleted" value="user-organization-deleted">                            
@@ -162,11 +165,11 @@
             </div>
         </div>
         <script>
-            function showSnackbar() {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500);
-            }
+            // function showSnackbar() {
+            //     const x = document.getElementById("snackbar")
+            //     x.className = "show"
+            //     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500)
+            // }
 
             const tabs = document.querySelectorAll('[data-tab-target]')
             const tabContents = document.querySelectorAll('[data-tab-content]')
@@ -202,6 +205,32 @@
                 }
             })
 
+            function onSendEventSubmit () {
+                event.preventDefault()
+
+                const eventAction = document.getElementById("event-action").value
+                const eventVersion = document.getElementById("event-version").value
+                const actorName = document.getElementById("actor-name").value
+                const actorType = document.getElementById("actor-type").value
+                const targetName = document.getElementById("target-name").value
+                const targetType = document.getElementById("target-type").value
+
+                fetch('/send_event', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        eventAction,
+                        eventVersion,
+                        actorName,
+                        actorType,
+                        targetName,
+                        targetType
+                    })
+                }) 
+            }
+
             document.getElementById("generate_csv")
                 .addEventListener("click", (event) => {
                     const actions = document.getElementById("filter-actions").value
@@ -233,42 +262,7 @@
                     })
                 })
         </script>
-
         <script src="https://unpkg.com/lucide@latest"></script>
-
         <script>lucide.createIcons()</script>
     </body>
 </html>
-
-
-
-
-
-        <!-- <script>
-            const form = document.getElementById("send-event-form")
-            function submitForm(event){
-                event.preventDefault()
-            }
-
-            form.addEventListener('submit', submitForm)
-        </script> -->
-
-
-
-                <!-- <script>
-            const e = document.getElementById("user_org_deleted")
-                e.addEventListener("click", (event) => {
-
-                    fetch('/send_event', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({eventId: event.target.closest('button').id})
-                    })
-
-                    let x = document.getElementById("snackbar");
-                    x.className = "show";
-                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500);
-                })
-        </script> -->
