@@ -41,16 +41,10 @@ router.get('/', async (req, res) => {
 router.get('/set_org', async (req, res) => {
     const org = await workos.organizations.getOrganization(
         req.query.id
-    );
-
-    const link = await workos.portal.generateLink({
-        organization: org.id,
-        intent: "audit_logs"
-    })
+    )
 
     session.orgId = org.id
     session.orgName = org.name
-    session.orgLink = link.link
 
     const now = new Date()
     const monthAgo = now.setMonth(now.getMonth() - 1)
@@ -58,7 +52,6 @@ router.get('/set_org', async (req, res) => {
     res.render('send_events.ejs', {
         orgName: org.name,
         orgId: org.id,
-        link: link.link,
         rangeStart: new Date(monthAgo).toISOString(),
         rangeEnd: new Date().toISOString()
     })
@@ -68,22 +61,7 @@ router.get('/set_org', async (req, res) => {
 router.post('/send_event', async (req, res) => {
     console.log('SEND EVENT POST ENDPOINT SUBMIT')
     // const eventId = req.body.eventId
-    // let event;
 
-    // switch(eventId) {
-    //     case 'user_signed_in':
-    //         event = user_signed_in
-    //         break
-    //     case 'user_logged_out':
-    //         event = user_logged_out
-    //         break
-    //     case 'user_organization_deleted':
-    //         event = user_organization_deleted
-    //         break
-    //     case 'user_connection_deleted':
-    //         event = user_connection_deleted
-    //         break
-    // }
 
     // try {
     //     await workos.auditLogs.createEvent(
@@ -95,15 +73,6 @@ router.post('/send_event', async (req, res) => {
     // }
 
     res.send('OK')
-})
-
-router.get('/generate_admin_portal_link', async (req, res) => {
-    const { link } = await workos.portal.generateLink({
-        organization: session.orgId,
-        intent: "audit_logs"
-    })
-
-    res.redirect(link)
 })
 
 //
@@ -122,15 +91,12 @@ router.post('/generate_csv', async (req, res) => {
 
     try {
         const auditLogExport = await workos.auditLogs.createExport(exportDetails)
-
         session.exportId = auditLogExport.id
     } catch (error) {
-        console.error(error)
+        console.error(error.message)
     }
-
 })
 
-//
 router.get('/access_csv', async (req, res) => {
     const auditLogExport = await workos.auditLogs.getExport(
         session.exportId,
@@ -139,17 +105,15 @@ router.get('/access_csv', async (req, res) => {
     await open(auditLogExport.url)
 })
 
-//
-router.get('/events', async (req, res) => {
-    const link = await workos.portal.generateLink({
+router.get('/event-stream', async (req, res) => {
+    const { link } = await workos.portal.generateLink({
         organization: session.orgId,
         intent: "audit_logs"
     })
 
-    res.redirect(link.link)
+    res.redirect(link)
 })
 
-//
 router.get('/logout', (req, res) => {
     session.orgId = null
     session.orgName = null

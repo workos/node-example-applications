@@ -76,7 +76,7 @@
                             <div class="flex space-evenly width-11vw content-button tab">
                                 <div><i icon-name="eye" class="stroke_width=1"></i></div>
                                 <div>
-                                    <a href="/events" class="remove-style"><button class="remove-style">Event Stream</button></a>
+                                    <a href="/event-stream" class="remove-style"><button class="remove-style">Event Stream</button></a>
                                 </div>                            
                             </div>
                         </div>
@@ -161,18 +161,6 @@
                 <div id="snackbar">Log Event Sent</div>
             </div>
         </div>
-    <!-- What tab is active, good  -->
-
-
-        <!-- <script>
-            const form = document.getElementById("send-event-form")
-            function submitForm(event){
-                event.preventDefault()
-            }
-
-            form.addEventListener('submit', submitForm)
-        </script> -->
-
         <script>
             function showSnackbar() {
                 var x = document.getElementById("snackbar");
@@ -213,9 +201,7 @@
                     }                                                        
                 }
             })
-        </script>
 
-        <script>
             document.getElementById("generate_csv")
                 .addEventListener("click", (event) => {
                     const actions = document.getElementById("filter-actions").value
@@ -248,7 +234,28 @@
                 })
         </script>
 
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <script>lucide.createIcons()</script>
+    </body>
+</html>
+
+
+
+
+
         <!-- <script>
+            const form = document.getElementById("send-event-form")
+            function submitForm(event){
+                event.preventDefault()
+            }
+
+            form.addEventListener('submit', submitForm)
+        </script> -->
+
+
+
+                <!-- <script>
             const e = document.getElementById("user_org_deleted")
                 e.addEventListener("click", (event) => {
 
@@ -265,9 +272,3 @@
                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500);
                 })
         </script> -->
-
-        <script src="https://unpkg.com/lucide@latest"></script>
-
-        <script>lucide.createIcons()</script>
-    </body>
-</html>
