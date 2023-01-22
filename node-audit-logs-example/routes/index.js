@@ -116,9 +116,9 @@ router.post('/generate_csv', async (req, res) => {
         range_end: rangeEnd,
     }
 
-    actions.length && (exportDetails.actions = actions)
-    actors.length && (exportDetails.actors = actors)
-    targets.length && (exportDetails.targets = targets)
+    actions && (exportDetails.actions = actions)
+    actors && (exportDetails.actors = actors)
+    targets && (exportDetails.targets = targets)
 
     try {
         const auditLogExport = await workos.auditLogs.createExport(exportDetails)

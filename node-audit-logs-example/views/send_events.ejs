@@ -218,6 +218,10 @@
         <script>
             document.getElementById("generate_csv")
                 .addEventListener("click", (event) => {
+                    const actions = document.getElementById("filter-actions").value
+                    const actors = document.getElementById("filter-actors").value
+                    const targets = document.getElementById("filter-targets").value
+
                     fetch('/generate_csv', {
                         method: 'POST',
                         headers: {
@@ -226,9 +230,9 @@
                         body: JSON.stringify({
                             rangeStart: document.getElementById("range-start").value,
                             rangeEnd: document.getElementById("range-end").value,
-                            actions: document.getElementById("filter-actions").value.split(","),
-                            actors: document.getElementById("filter-actors").value.split(","),
-                            targets: document.getElementById("filter-targets").value.split(",")
+                            actions: actions ? actions.split(",") : null,
+                            actors: actors ? actors.split(",") : null,
+                            targets: targets ? targets.split(",") : null
                         })
                     })
                 })
