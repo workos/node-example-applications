@@ -142,7 +142,7 @@ router.get('/access_csv', async (req, res) => {
 //
 router.get('/events', async (req, res) => {
     const link = await workos.portal.generateLink({
-        organization: "org_01GF6GSVK3QZ9RBD5QQ81WCYBN",
+        organization: session.orgId,
         intent: "audit_logs"
     })
 
