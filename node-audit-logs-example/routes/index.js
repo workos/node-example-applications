@@ -2,7 +2,6 @@ import express from 'express'
 import session from 'express-session'
 import open from 'open'
 import { WorkOS } from '@workos-inc/node'
-import { user_signed_in, user_logged_out, user_organization_deleted, user_connection_deleted } from '../audit_log_events.js'
 
 const app = express()
 const router = express.Router()
@@ -18,7 +17,6 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 
-//
 router.get('/', async (req, res) => {
     let before = req.query.before
     let after = req.query.after
@@ -40,7 +38,6 @@ router.get('/', async (req, res) => {
     })
 })
 
-//
 router.get('/set_org', async (req, res) => {
     const org = await workos.organizations.getOrganization(
         req.query.id
@@ -100,13 +97,6 @@ router.post('/send_event', async (req, res) => {
     res.send('OK')
 })
 
-router.get('/export_events', (req, res) => {
-    res.render('export_events.ejs', {
-        orgName: session.orgName,
-        orgId: session.orgId
-    })
-})
-
 router.get('/generate_admin_portal_link', async (req, res) => {
     const { link } = await workos.portal.generateLink({
         organization: session.orgId,
@@ -118,16 +108,26 @@ router.get('/generate_admin_portal_link', async (req, res) => {
 
 //
 router.post('/generate_csv', async (req, res) => {
-    const now = new Date()
-    const monthAgo = now.setMonth(now.getMonth() - 1)
+    const { actions, actors, targets, rangeStart, rangeEnd } = req.body
 
-    const auditLogExport = await workos.auditLogs.createExport({
+    const exportDetails = {
         organization_id: session.orgId,
-        range_start: new Date(monthAgo).toISOString(),
-        range_end: new Date().toISOString(),
-    })
+        range_start: rangeStart,
+        range_end: rangeEnd,
+    }
 
-    session.exportId = auditLogExport.id
+    actions.length && (exportDetails.actions = actions)
+    actors.length && (exportDetails.actors = actors)
+    targets.length && (exportDetails.targets = targets)
+
+    try {
+        const auditLogExport = await workos.auditLogs.createExport(exportDetails)
+
+        session.exportId = auditLogExport.id
+    } catch (error) {
+        console.error(error)
+    }
+
 })
 
 //
