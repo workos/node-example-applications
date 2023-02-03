@@ -16,7 +16,7 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 const clientID = process.env.WORKOS_CLIENT_ID
-const connectionID = ''
+const organizationID = ''
 const redirectURI = 'http://localhost:8000/callback'
 const state = ''
 
@@ -34,7 +34,7 @@ router.get('/', function (req, res) {
 router.get('/login', (req, res) => {
     try {
         const url = workos.sso.getAuthorizationURL({
-            connection: connectionID,
+            organization: organizationID,
             clientID: clientID,
             redirectURI: redirectURI,
             state: state,
