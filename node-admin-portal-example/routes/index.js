@@ -1,8 +1,9 @@
 import express from 'express'
-const router = express.Router()
 import { WorkOS } from '@workos-inc/node'
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
+
+const router = express.Router()
 
 router.get('/', async (req, res) => {
     res.render('index.ejs', {

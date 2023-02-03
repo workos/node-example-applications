@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/workos/node-example-applications.git"
   },
-  "author": "",
+  "author": "WorkOS",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/workos/node-example-applications/issues"

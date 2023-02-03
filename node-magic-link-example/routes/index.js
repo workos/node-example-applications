@@ -1,6 +1,7 @@
 import express from 'express'
-const router = express.Router()
 import { WorkOS } from '@workos-inc/node'
+
+const router = express.Router()
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 

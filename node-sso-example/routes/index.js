@@ -18,7 +18,7 @@ const workos = new WorkOS(process.env.WORKOS_API_KEY)
 const clientID = process.env.WORKOS_CLIENT_ID
 const connectionID = ''
 const redirectURI = 'http://localhost:8000/callback'
-const state = 'thisguysemail@gmail.com'
+const state = ''
 
 router.get('/', function (req, res) {
     if (session.isloggedin) {
@@ -27,7 +27,7 @@ router.get('/', function (req, res) {
             first_name: session.first_name,
         })
     } else {
-        res.render('index.ejs', { title: 'Express' })
+        res.render('index.ejs', { title: 'Home' })
     }
 })
 
