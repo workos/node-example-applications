@@ -48,7 +48,7 @@ Node.js version 10+
 
 6. Add `http://localhost:8000/callback` as a Redirect URI in the Configuration section of the Dashboard.
 
-7. Update `routes/index.js` with the Connection ID.
+7. Update `routes/index.js` with the Organization ID.
 
 ## Testing the Integration
 

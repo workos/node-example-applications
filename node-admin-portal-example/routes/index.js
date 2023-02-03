@@ -1,8 +1,9 @@
 import express from 'express'
-const router = express.Router()
 import { WorkOS } from '@workos-inc/node'
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
+
+const router = express.Router()
 
 router.get('/', async (req, res) => {
     res.render('index.ejs', {
@@ -10,24 +11,31 @@ router.get('/', async (req, res) => {
     })
 })
 
+router.post('/find-enterprise', async (req, res) => {
+    const organizationID = req.body.orgID
+
+    try {
+        const organization = await workos.organizations.getOrganization(
+            organizationID
+        );
+        global.organization = organization
+        res.render('logged_in.ejs')
+    } catch (error) {
+        res.render('index.ejs', {
+            error: error
+        })
+    }
+})
+
 router.post('/provision-enterprise', async (req, res) => {
-    const organizationName = req.body.org
+    const organizationName = req.body.orgName
     const domains = req.body.domain.split(' ')
 
-    const organizations = await workos.organizations.listOrganizations({
+    global.organization = await workos.organizations.createOrganization({
+        name: organizationName,
         domains: domains,
     })
-
-    if (organizations.data.length === 0) {
-        global.organization = await workos.organizations.createOrganization({
-            name: organizationName,
-            domains: domains,
-        })
-        res.render('logged_in.ejs')
-    } else {
-        global.organization = organizations.data[0]
-        res.render('logged_in.ejs')
-    }
+    res.render('logged_in.ejs')
 })
 
 router.get('/sso-admin-portal', async (_req, res) => {

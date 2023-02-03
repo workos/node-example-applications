@@ -1,6 +1,7 @@
 import express from 'express'
-const router = express.Router()
 import { WorkOS } from '@workos-inc/node'
+
+const router = express.Router()
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 
@@ -31,7 +32,7 @@ router.post('/passwordless-auth', async (req, res) => {
     })
 })
 
-router.get('/success', async (req, res) => {
+router.get('/callback', async (req, res) => {
     const code = req.query.code
 
     const profile = await workos.sso.getProfileAndToken({
