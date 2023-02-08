@@ -76,7 +76,13 @@
                             <div class="flex space-evenly width-11vw content-button tab">
                                 <div><i icon-name="eye" class="stroke_width=1"></i></div>
                                 <div>
-                                    <a href="/event-stream" class="remove-style"><button class="remove-style">Event Stream</button></a>
+                                    <a href="/events?intent=audit_logs" class="remove-style"><button class="remove-style">View Events</button></a>
+                                </div>                            
+                            </div>
+                            <div class="flex space-evenly width-11vw content-button tab">
+                                <div><i icon-name="share-2" class="stroke_width=1"></i></div>
+                                <div>
+                                    <a href="/events?intent=log_streams" class="remove-style"><button class="remove-style">Configure Log Streams</button></a>
                                 </div>                            
                             </div>
                         </div>
@@ -165,12 +171,6 @@
             </div>
         </div>
         <script>
-            // function showSnackbar() {
-            //     const x = document.getElementById("snackbar")
-            //     x.className = "show"
-            //     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500)
-            // }
-
             const tabs = document.querySelectorAll('[data-tab-target]')
             const tabContents = document.querySelectorAll('[data-tab-content]')
             

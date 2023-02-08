@@ -121,10 +121,12 @@ router.get('/access_csv', async (req, res) => {
     await open(auditLogExport.url)
 })
 
-router.get('/event-stream', async (req, res) => {
+router.get('/events', async (req, res) => {
+    const intent = req.query.intent
+    
     const { link } = await workos.portal.generateLink({
         organization: session.orgId,
-        intent: "audit_logs"
+        intent
     })
 
     res.redirect(link)
