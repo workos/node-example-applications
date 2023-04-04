@@ -17,7 +17,7 @@ app.use(
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 session.factors = []
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
     res.render('index.ejs', { title: 'Home', factors: session.factors })
 })
 
@@ -25,32 +25,37 @@ router.get('/enroll_factor', (req, res) => {
     res.render('enroll_factor.ejs')
 })
 
-router.post('/enroll_new_factor', async function (req, res) {
-    let factor_type
+router.post('/enroll_sms_factor', async (req, res) => {
     let new_factor
+    const phone_number = '+1' + req.body.phone_number
 
-    if (req.body.type === 'sms') {
-        factor_type = req.body.type
-        const phone_number = '+1' + req.body.phone_number
-
-        new_factor = await workos.mfa.enrollFactor({
-            type: factor_type,
-            phoneNumber: phone_number,
-        })
-    } else if (req.body.type === 'totp') {
-        factor_type = req.body.type
-        const issuer = req.body.totp_issuer
-        const user = req.body.totp_user
-
-        new_factor = await workos.mfa.enrollFactor({
-            type: factor_type,
-            issuer: issuer,
-            user: user,
-        })
-    }
+    new_factor = await workos.mfa.enrollFactor({
+        type: 'sms',
+        phoneNumber: phone_number,
+    })
 
     session.factors.push(new_factor)
-    res.render('index.ejs', { factors: session.factors })
+    res.render('index.ejs', { factors: session.factors })  
+})
+
+router.post('/enroll_totp_factor', async (req, res) => {
+    const { type, issuer, user } = req.body
+
+    const { object, id, created_at, updated_at, totp} = await workos.mfa.enrollFactor({
+        type,
+        issuer,
+        user
+    })
+
+    session.factors.push({
+        object,
+        id,
+        created_at,
+        updated_at,
+        type
+    })
+
+    res.json(totp.qr_code)
 })
 
 router.get('/factor_detail/:id', async (req, res) => {
