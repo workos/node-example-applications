@@ -1,7 +1,6 @@
 body {
   font-family: Inter, sans-serif;
   background-color: #f9f9fb;
-
 }
 
 .container_login {
@@ -98,17 +97,6 @@ body {
   font-size: 60px;
   color: darkslategray;
 }
-
-.qr_div {
-  align-self: center;
-  margin-top: 45px;
-}
-
-.qr_code {
-  width: 7vw;
-  max-width: 100px;
-}
-
 
 .factor_card {
   border: 1px solid #555555;
@@ -249,8 +237,6 @@ h1 {
 
 div.text_box {
   background-color: #f9f9fb;
-  /* border-radius: 5px;
-  border: 2px solid #6363f1; */
   width: 75%;
   max-height: 30vh;
   padding: 10px;
@@ -268,8 +254,7 @@ div.text_box {
   background-color: #f9f9fb;
   height: 60px;
   padding: 15px 30px 15px 30px;
-
-  z-index: 1000;
+  z-index: 998;
 }
 
 .logged_in_nav p {
@@ -300,4 +285,44 @@ div.text_box {
   background-color: #f9f9fb;
   border: 2px solid #f9f9fb;
   color: #a6a4a4;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); 
+  z-index: 999; 
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr_code_instructions {
+  width: 300px;
+}
+
+.qr_code {
+  width: 300px;
+  margin: 25px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
