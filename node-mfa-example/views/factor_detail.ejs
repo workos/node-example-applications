@@ -53,11 +53,6 @@
                                         <p>Updated At: <code><%=factor.updated_at%></code></p>
                             </div>
                         </div>
-                        <% if (factor.type==="totp" ) { %>
-                            <div class="qr_div">
-                                <img class="qr_code " src=<%=factor.totp.qr_code%> alt="qr_code">
-                            </div>
-                            <% } %>
                     </div>
                     <form method="POST" action="/challenge_factor">
                         <div class="flex_column">
