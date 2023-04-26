@@ -31,14 +31,23 @@ router.get('/', function (req, res) {
     }
 })
 
-router.get('/login', (req, res) => {
+router.post('/login', (req, res) => {
+    const login_type = req.body.login_method;
+
+    const params = {
+        clientID: clientID,
+        redirectURI: redirectURI,
+        state: state
+    };
+
+    if (login_type === "saml") {
+        params.organization = organizationID;
+    } else {
+        params.provider = login_type;
+    }
+
     try {
-        const url = workos.sso.getAuthorizationURL({
-            organization: organizationID,
-            clientID: clientID,
-            redirectURI: redirectURI,
-            state: state,
-        })
+        const url = workos.sso.getAuthorizationURL(params)
 
         res.redirect(url)
     } catch (error) {
