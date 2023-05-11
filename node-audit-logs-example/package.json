@@ -10,7 +10,7 @@
   },
   "author": "WorkOS",
   "dependencies": {
-    "@workos-inc/node": "^2.16.0",
+    "@workos-inc/node": "^2.18.0",
     "casual": "^1.6.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
