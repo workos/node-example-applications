@@ -30,7 +30,7 @@
                 <div class="flex_column">
                     <div class="flex space-between width-507px">
                         <div>
-                            <h2>Groups Details</h2>
+                            <h2>User Details</h2>
                         </div>
                         <div>
                             <a href="javascript:history.back()">
@@ -38,17 +38,17 @@
                             </a>
                         </div>
                     </div>
-                    <% if (groups.length > 0) { %>
+                    <% if (users.length > 0) { %>
                     <div>
                         <table class="width-507px">
                             <tr>
                                 <th>Name</th>
-                                <th>ID</th>
+                                <th>Email</th>
                             </tr>
-                            <% for (let i = 0; i < groups.length; i++) { %>
+                            <% for (let i = 0; i < users.length; i++) { %>
                             <tr>
-                                <td class="ta-left"><%= groups[i].name %></td>
-                                <td class="ta-left"><code><%= groups[i].id %></code></td>
+                                <td class="ta-left"><%= users[i].first_name %> <%= users[i].last_name %></td>
+                                <td class="ta-left"><code><%= users[i].username %></code></td>
                             </tr>
                             <% } %>
                         </table>
