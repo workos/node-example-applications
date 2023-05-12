@@ -1,38 +1,29 @@
 <html>
     <head>
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="../public/stylesheets/style.css" />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Inter" />
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
     </head>
 
     <body class="container_success">
         <div class="logged_in_nav">
             <div class="flex">
                 <div>
-                    <img
-                        src="../public/images/workos-logo-with-text.png"
-                        alt="workos logo" />
+                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo" />
                 </div>
             </div>
             <div>
-                <a href="https://workos.com/docs" target="_blank"
-                    ><button class="button nav-item">Documentation</button></a
-                >
-                <a href="https://workos.com/docs/reference" target="_blank"
-                    ><button class="button nav-item">API Reference</button></a
-                >
-                <a href="https://workos.com/blog" target="_blank"
-                    ><button class="button nav-item blog-nav-button">
-                        Blog
-                    </button></a
-                >
-                <a href="https://workos.com/" target="_blank"
-                    ><button class="button button-outline">WorkOS</button></a
-                >
+                <a href="https://workos.com/docs" target="_blank">
+                    <button class="button nav-item">Documentation</button>
+                </a>
+                <a href="https://workos.com/docs/reference" target="_blank">
+                    <button class="button nav-item">API Reference</button>
+                </a>
+                <a href="https://workos.com/blog" target="_blank">
+                    <button class="button nav-item blog-nav-button">Blog</button>
+                </a>
+                <a href="https://workos.com/" target="_blank">
+                    <button class="button button-outline">WorkOS</button>
+                </a>
             </div>
         </div>
         <div class="flex">
@@ -44,23 +35,12 @@
                             <form method="POST" action="enroll_sms_factor">
                                 <div class="flex">
                                     <div class="flex">
-                                        <input
-                                            class="text_input"
-                                            type="text"
-                                            id="phone_number"
-                                            name="phone_number"
-                                            placeholder="Phone Number" />
+                                        <input class="text_input" type="text" id="phone_number" name="phone_number" placeholder="Phone Number" />
                                     </div>
                                 </div>
                                 <div class="flex">
                                     <div>
-                                        <button
-                                            type="submit"
-                                            name="type"
-                                            value="sms"
-                                            id="sms-factor-submit-btn"
-                                            class="button button-outline button-sm"
-                                            disabled>
+                                        <button type="submit" name="type" value="sms" id="sms-factor-submit-btn" class="button button-outline button-sm" disabled>
                                             Enroll New Factor
                                         </button>
                                     </div>
@@ -72,29 +52,15 @@
                             <div>
                                 <div class="flex-column">
                                     <div class="flex">
-                                        <input
-                                            class="text_input"
-                                            type="text"
-                                            id="totp_issuer"
-                                            name="totp_issuer"
-                                            placeholder="TOTP Issuer" />
+                                        <input class="text_input" type="text" id="totp_issuer" name="totp_issuer" placeholder="TOTP Issuer" />
                                     </div>
                                     <div class="flex">
-                                        <input
-                                            class="text_input"
-                                            type="text"
-                                            id="totp_user"
-                                            name="totp_user"
-                                            placeholder="User Email" />
+                                        <input class="text_input" type="text" id="totp_user" name="totp_user" placeholder="User Email" />
                                     </div>
                                 </div>
                                 <div class="flex">
                                     <div>
-                                        <button
-                                            value="totp"
-                                            id="totp-factor-submit-btn"
-                                            class="button button-outline button-sm"
-                                            disabled>
+                                        <button value="totp" id="totp-factor-submit-btn" class="button button-outline button-sm" disabled>
                                             Enroll New Factor
                                         </button>
                                     </div>
