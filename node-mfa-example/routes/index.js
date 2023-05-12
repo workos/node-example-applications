@@ -35,24 +35,25 @@ router.post('/enroll_sms_factor', async (req, res) => {
     })
 
     session.factors.push(new_factor)
-    res.render('index.ejs', { factors: session.factors })  
+    res.render('index.ejs', { factors: session.factors })
 })
 
 router.post('/enroll_totp_factor', async (req, res) => {
     const { type, issuer, user } = req.body
 
-    const { object, id, created_at, updated_at, totp} = await workos.mfa.enrollFactor({
-        type,
-        issuer,
-        user
-    })
+    const { object, id, created_at, updated_at, totp } =
+        await workos.mfa.enrollFactor({
+            type,
+            issuer,
+            user,
+        })
 
     session.factors.push({
         object,
         id,
         created_at,
         updated_at,
-        type
+        type,
     })
 
     res.json(totp.qr_code)
@@ -114,8 +115,8 @@ router.post('/verify_factor', async (req, res) => {
     })
 
     res.render('challenge_success.ejs', {
-        title: 'Challenge Success',
         verify_factor: verify_factor,
+        type: session.current_factor.type,
     })
 })
 

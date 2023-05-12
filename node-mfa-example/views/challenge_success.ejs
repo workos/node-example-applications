@@ -1,61 +1,60 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css">
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
     </head>
+    
     <body class="container_success">
         <div class="logged_in_nav">
             <div class="flex">
                 <div>
-                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo">
+                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo" />
                 </div>
             </div>
-            <div>
-                <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
-                <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
-                        Reference</button></a>
-                <a href="https://workos.com/blog" target="_blank"><button
-                        class='button nav-item blog-nav-button'>Blog</button></a>
-                <a href="https://workos.com/" target="_blank"><button class='button button-outline'>WorkOS</button></a>
+            <div class="flex">
+                <a href="https://workos.com/docs" target="_blank">
+                    <button class="button nav-item">Documentation</button>
+                </a>
+                <a href="https://workos.com/docs/reference" target="_blank">
+                    <button class="button nav-item">API Reference</button>
+                </a>
+                <a href="https://workos.com/blog" target="_blank">
+                    <button class="button nav-item blog-nav-button">Blog</button>
+                </a>
+                <a href="https://workos.com/" target="_blank">
+                    <button class="button button-outline">WorkOS</button>
+                </a>
             </div>
         </div>
-        <div class='flex'>
-            <div class="logged_in_div_left">
-                <div class="title-text">
-                    <h1>Your app,</h1>
-                    <h2 class="home-hero-gradient">Enterprise Ready</h2>
-                </div>
-                <div class="title-subtext">
-                    <p>Start selling to enterprise customers with just a few lines of code.</p>
-                    <p>Implement features like single sign-on in minutes instead of months.</p>
-                </div>
-                <div class="flex success-buttons">
-                    <a href="https://workos.com/signup" target="_blank"><button class='button'>Get Started</button></a>
-                    <a href="mailto:sales@workos.com?subject=WorkOS Sales Inquiry" target="_blank"><button
-                            class='button button-outline sales-button'>Contact
-                            Sales</button></a>
-                </div>
-            </div>
+        <div class="flex">
             <div class="logged_in_div_right">
                 <div class="flex_column">
                     <div class="flex-column">
-                    </div>
-                    <div class="flex-column">
-                        <div>
-                            <% if (verify_factor.valid==true ) { %>
-                                <h1>Challenge Successful!</h1>
-                                <% } else { %>
-                                    <h1>Challenge Unsuccessful!</h1>
-                                    <% } %>
-                                        <p>User Verified: <%=verify_factor.valid%>
-                                        </p>
-                                        <p>Factor ID: <%=verify_factor.challenge.authentication_factor_id%>
-                                        </p>
-                                        <p>Created At: <%=verify_factor.challenge.created_at%>t</p>
-                                        <p>Expires At: <%=verify_factor.challenge.updated_at%>
-                                        </p>
+                        <div class="flex space-between">
+                            <div>
+                                <h2>User Verified: <%= verify_factor.valid %></h2>
+                            </div>
+                            <div>
+                                <a href="/"><button class="button">Go Back Home</button></a>
+                            </div>
                         </div>
+                        <table class="width-725px">
+                            <tr>
+                                <th>ID</th>
+                                <th>Created At</th>
+                                <% if (type === 'sms') { %>
+                                <th>Expires At</th>
+                                <% } %>
+                            </tr>
+                            <tr>
+                                <td><%= verify_factor.challenge.authentication_factor_id %></td>
+                                <td><%= verify_factor.challenge.created_at %></td>
+                                <% if (type === 'sms') { %>
+                                <td><%= verify_factor.challenge.expires_at %></td>
+                                <% } %>
+                            </tr>
+                        </table>
                     </div>
-                    <a href="/"><button class='button button-sm m-top-20'>Go Back Home</button></a>
                 </div>
             </div>
         </div>

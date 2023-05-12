@@ -32,18 +32,18 @@ router.get('/', function (req, res) {
 })
 
 router.post('/login', (req, res) => {
-    const login_type = req.body.login_method;
+    const login_type = req.body.login_method
 
     const params = {
         clientID: clientID,
         redirectURI: redirectURI,
-        state: state
-    };
+        state: state,
+    }
 
-    if (login_type === "saml") {
-        params.organization = organizationID;
+    if (login_type === 'saml') {
+        params.organization = organizationID
     } else {
-        params.provider = login_type;
+        params.provider = login_type
     }
 
     try {

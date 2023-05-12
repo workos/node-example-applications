@@ -1,34 +1,40 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../public/stylesheets/style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+        <link rel="stylesheet" href="../public/stylesheets/style.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
     </head>
+    
     <body class="height-100vh">
         <div class="logged_in_nav">
             <div class="flex">
                 <div>
-                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo">
+                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo" />
                 </div>
-    
             </div>
-            <div class="flex">                
-                <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
-                <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
-                        Reference</button></a>
-                <a href="https://workos.com/blog" target="_blank"><button
-                        class='button nav-item blog-nav-button'>Blog</button></a>
-                <a href="https://workos.com/" target="_blank"><button class='button button-outline'>WorkOS</button></a>
+            <div class="flex">
+                <a href="https://workos.com/docs" target="_blank">
+                    <button class="button nav-item">Documentation</button>
+                </a>
+                <a href="https://workos.com/docs/reference" target="_blank">
+                    <button class="button nav-item">API Reference</button>
+                </a>
+                <a href="https://workos.com/blog" target="_blank">
+                    <button class="button nav-item blog-nav-button">Blog</button>
+                </a>
+                <a href="https://workos.com/" target="_blank">
+                    <button class="button button-outline">WorkOS</button>
+                </a>
             </div>
         </div>
         <div class="flex flex_column height-80vh">
-            <div class='flex height-40vh'>                                  
+            <div class="flex height-40vh">
                 <div class="card height-315 width-335">
                     <form method="POST" action="/login" class="mb-0">
-                        <div class='flex_column'>
+                        <div class="flex_column">
                             <div>
                                 <span>Log in with SSO</span>
                             </div>
-                            <hr style="width:100%; margin-top: 15px; margin-bottom: 20px;">                    
+                            <hr style="width: 100%; margin-top: 15px; margin-bottom: 20px;" />
                             <button id="Google" name="login_method" value="GoogleOAuth" class="card login_button google_button">
                                 <span>Google OAuth</span>
                             </button>
@@ -42,6 +48,6 @@
                     </form>
                 </div>
             </div>
-        </div>        
+        </div>
     </body>
 </html>

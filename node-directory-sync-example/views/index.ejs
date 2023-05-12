@@ -3,28 +3,27 @@
         <link rel="stylesheet" href="../public/stylesheets/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     </head>
-    <body >
+
+    <body>
         <div class="logged_in_nav">
-            <div class="flex space-between width-100vw">
-                <div><p>Node.js Directory Sync Example App</p></div>
-                <div class="flex">
-                    <div>
-                        <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
-                    </div>
-                    <div>
-                        <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
-                            Reference</button></a>
-                    </div>
-                    <div>
-                        <a href="https://workos.com/blog" target="_blank"><button
-                            class='button nav-item blog-nav-button'>Blog</button></a>
-                    </div>
-                    <div>
-                        <a href="https://workos.com/" target="_blank">
-                            <img class="nav-image" src="../public/images/workos_favicon.png" alt="link to workos.com">
-                        </a> 
-                    </div>
+            <div class="flex">
+                <div>
+                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo" />
                 </div>
+            </div>
+            <div class="flex">
+                <a href="https://workos.com/docs" target="_blank">
+                    <button class="button nav-item">Documentation</button>
+                </a>
+                <a href="https://workos.com/docs/reference" target="_blank">
+                    <button class="button nav-item">API Reference</button>
+                </a>
+                <a href="https://workos.com/blog" target="_blank">
+                    <button class="button nav-item blog-nav-button">Blog</button>
+                </a>
+                <a href="https://workos.com/" target="_blank">
+                    <button class="button button-outline">WorkOS</button>
+                </a>
             </div>
         </div>
         <div class='flex_column  height-70vh'>
@@ -40,37 +39,36 @@
                 <div>
                     <table class="width-65vw">
                         <tr>
-                        <th>Organization</th>
-                        <th>ID</th>
-                        <th>View Settings</th>
+                          <th>Organization</th>
+                          <th>ID</th>
+                          <th>View Settings</th>
                         </tr>
                         <% for(let i=0; i<directories.length; i++) {%>         
-                        <tr>
-                            <td><%= directories[i].name %></td>
-                            <td><%= directories[i].id %></td>                
-                            <td><a class="button button-outline" href="/directory/<%=directories[i].id%>"><i icon-name="settings-2" class="stroke_width=1"></i></a></td>
-                        </tr>
-                        <% } %>                     
+                            <tr>
+                                <td><%= directories[i].name %></td>
+                                <td><%= directories[i].id %></td>                
+                                <td><a class="button button-outline" href="/directory?id=<%=directories[i].id%>"><i icon-name="settings-2" class="stroke_width=1"></i></a></td>
+                            </tr>
+                        <% } %>                   
                     </table>   
                 </div>                     
                 <div class="flex flex-end width-65vw">
                     <% if ( after ) { %>
-                    <div>
-                        <a href="/?after=<%=after%>"><button class="button page-title">Previous</button></a>
-                    </div>                        
+                        <div>
+                            <a href="/?after=<%=after%>"><button class="button page-title">Previous</button></a>
+                        </div>                        
                     <% } %>
                     <% if ( before ) { %>
-                    <div>
-                        <a href="/?before=<%=before%>"><button class="button page-title">Next</button></a>
-                    </div>                    
-                    <% } %>          
+                        <div>
+                            <a href="/?before=<%=before%>"><button class="button page-title">Next</button></a>
+                        </div>                    
+                    <% } %>            
                 </div>    
             </div>
         </div>
-        <script src="https://unpkg.com/lucide@latest"></script>
-        <script>
-            lucide.createIcons();
-        </script>
     </body>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </html>
-

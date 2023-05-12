@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.post('/passwordless-auth', async (req, res) => {
+router.post('/passwordless_auth', async (req, res) => {
     const email = req.body.email
 
     const session = await workos.passwordless.createSession({
