@@ -31,8 +31,13 @@ app.get('/', async (req, res) => {
     let before = req.query.before
     let after = req.query.after
 
-    const directories = await workos.directorySync.listDirectories({ limit: 5, before: before, after: after, order: null })
-  
+    const directories = await workos.directorySync.listDirectories({
+        limit: 5,
+        before: before,
+        after: after,
+        order: null,
+    })
+
     before = directories.listMetadata.before
     after = directories.listMetadata.after
 
@@ -40,14 +45,14 @@ app.get('/', async (req, res) => {
         title: 'Home',
         directories: directories.data,
         before: before,
-        after: after
+        after: after,
     })
 })
 
-app.get('/directory/:id', async (req, res) => {
+app.get('/directory', async (req, res) => {
     const directories = await workos.directorySync.listDirectories()
-    const directory = await directories.data.filter((directory) => {
-        return directory.id == req.params.id
+    const directory = directories.data.filter((directory) => {
+        return directory.id == req.query.id
     })[0]
     res.render('directory.ejs', {
         directory: directory,
@@ -55,62 +60,22 @@ app.get('/directory/:id', async (req, res) => {
     })
 })
 
-app.get('/directory/:id/usersgroups', async (req, res) => {
-    const directories = await workos.directorySync.listDirectories()
-    const directory = await directories.data.filter((directory) => {
-        return directory.id == req.params.id
-    })[0]
-    const groups = await workos.directorySync.listGroups({
-        directory: req.params.id,
-    })
+app.get('/users', async (req, res) => {
+    const directoryId = req.query.id
     const users = await workos.directorySync.listUsers({
-        directory: req.params.id,
+        directory: directoryId,
+        limit: 100,
     })
-
-    res.render('groups.ejs', {
-        groups: groups.data,
-        directory: directory,
-        users: users.data,
-        title: 'Group & Users',
-    })
+    res.render('users.ejs', { users: users.data })
 })
 
-app.get('/directory/:id/group/:groupId', async (req, res) => {
-    const directories = await workos.directorySync.listDirectories()
-    const directory = await directories.data.filter((directory) => {
-        return directory.id == req.params.id
-    })[0]
+app.get('/groups', async (req, res) => {
+    const directoryId = req.query.id
     const groups = await workos.directorySync.listGroups({
-        directory: req.params.id,
+        directory: directoryId,
+        limit: 100,
     })
-    const group = await groups.data.filter((group) => {
-        return group.id == req.params.groupId
-    })[0]
-    res.render('group.ejs', {
-        directory: directory,
-        title: 'Directory',
-        group: JSON.stringify(group, null, 2),
-        rawGroup: group,
-    })
-})
-
-app.get('/directory/:id/user/:userId', async (req, res) => {
-    const directories = await workos.directorySync.listDirectories()
-    const directory = await directories.data.filter((directory) => {
-        return directory.id == req.params.id
-    })[0]
-    const users = await workos.directorySync.listUsers({
-        directory: req.params.id,
-    })
-    const user = await users.data.filter((user) => {
-        return user.id == req.params.userId
-    })[0]
-    res.render('user.ejs', {
-        directory: directory,
-        title: 'Directory',
-        user: JSON.stringify(user, null, 2),
-        rawUser: user,
-    })
+    res.render('groups.ejs', { groups: groups.data })
 })
 
 app.post('/webhooks', async (req, res) => {
