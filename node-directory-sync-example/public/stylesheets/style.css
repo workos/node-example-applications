@@ -354,6 +354,12 @@ th {
     padding: 15px 40px;
 }
 
+.webhooks-container,
+.table-container {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
 .width-75 {
     width: 75%;
 }
