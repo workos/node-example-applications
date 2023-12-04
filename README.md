@@ -2,24 +2,17 @@
 
 ![image](https://github.com/NathanTarbert/nathans-node-auth-app/assets/66887028/9b6fbf34-4094-4c63-91f1-2ea9de6dfd10)
 
+## Clone the repo
+```bash
+  $ https://github.com/NathanTarbert/nathans-node-auth-app.git
+  ```
 
-An example application authenticate users via SSO and Directory Sync.
+This is an example application which demonstrates the process of authenticating users via SSO and Directory Sync.
+The two services we are using are WorkOS and Okta.
 
 ## Testing the Integration
 
-Open two terminals running the command below
-
-- Navigate to the SSO app within the cloned repo.
-
-  ```bash
-  $ cd node-example-applications/node-sso-example
-  ```
-
-- Navigate to Directory Sync app within the cloned repo.
-
-  ```bash
-  $ cd node-example-applications/node-directory-sync-example
-  ```
+We will run two servers with one command.
 
 ```sh
 npm run start:both
@@ -28,6 +21,8 @@ npm run start:both
 - http://localhost:8000 as the primary server to authenticate the SSO login
 
 - http://localhost:8001 as the secondary server that will retrieve our users
+
+Navigate to `localhost:8000` to log in. 
 
 
 ## Need help?
