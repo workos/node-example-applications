@@ -29,12 +29,6 @@ npm run start:both
 
 - http://localhost:8001 as the secondary server that will retrieve our users
 
-## Loggin In:
-
-log into the app using a dummy gmail account 
-
-- `nathan.test.workos@gmail.com`
-- `test123*`
 
 ## Need help?
 
