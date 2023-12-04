@@ -19,7 +19,7 @@ Open two terminals running the command below
   ```
 
 ```sh
-npm start
+npm run start:both
 ```
 
 - http://localhost:8000 as the primary server to authenticate the SSO login
