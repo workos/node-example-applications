@@ -22,7 +22,7 @@ npm run start:both
 
 - http://localhost:8001 as the secondary server that will retrieve our users
 
-Navigate to `localhost:8000` to log in. 
+Navigate to `localhost:8000` to begin loggin in. 
 
 
 ## Need help?
