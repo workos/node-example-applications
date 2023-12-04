@@ -28,6 +28,7 @@ const state = "";
 
 router.get("/", function (req, res) {
   if (session.isloggedin) {
+    console.log("session", session);
     res.render("login_successful.ejs", {
       profile: session.profile,
       first_name: session.first_name,
@@ -85,7 +86,18 @@ router.get("/callback", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
+router.get("/directory", async (req, res) => {
+  const directories = await workos.directorySync.listDirectories();
+  const directory = directories.data.filter((directory) => {
+    return directory.id == req.query.id;
+  })[0];
+  res.render("directory.ejs", {
+    directory: directory,
+    title: "Directory",
+  });
+});
+
+router.get("/users", async (req, res) => {
   const directoryId = req.query.id;
   const users = await workos.directorySync.listUsers({
     directory: directoryId,
