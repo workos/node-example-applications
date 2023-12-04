@@ -1,5 +1,8 @@
 # Node.js Example App with SSO & Directory Sync
 
+![image](https://github.com/NathanTarbert/nathans-node-auth-app/assets/66887028/9b6fbf34-4094-4c63-91f1-2ea9de6dfd10)
+
+
 An example application authenticate users via SSO and Directory Sync.
 
 ## Testing the Integration
