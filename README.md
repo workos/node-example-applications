@@ -4,7 +4,7 @@
 
 ## Clone the repo
 ```bash
-  $ https://github.com/NathanTarbert/nathans-node-auth-app.git
+$ https://github.com/NathanTarbert/nathans-node-auth-app.git
   ```
 
 Change directories into the app and install dependencies
