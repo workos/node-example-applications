@@ -18,5 +18,8 @@
   "homepage": "https://github.com/workos/node-example-applications#readme",
   "devDependencies": {
     "eslint": "^8.17.0"
+  },
+  "dependencies": {
+    "@workos-inc/node": "^4.0.0"
   }
 }
