@@ -7,6 +7,13 @@
   $ https://github.com/NathanTarbert/nathans-node-auth-app.git
   ```
 
+Change directories into the app and install dependencies
+
+```sh
+$ cd nathans-node-auth-app && npm install
+```
+
+
 This is an example application which demonstrates the process of authenticating users via SSO and Directory Sync.
 The two services we are using are WorkOS and Okta.
 
@@ -15,7 +22,7 @@ The two services we are using are WorkOS and Okta.
 We will run two servers with one command.
 
 ```sh
-npm run start:both
+$ npm run start:both
 ```
 
 - http://localhost:8000 as the primary server to authenticate the SSO login
