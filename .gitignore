@@ -1,2 +1,8 @@
+#Env
 .env
+process.env
+env.local
+
+#Packages
 node_modules
+package-lock.json

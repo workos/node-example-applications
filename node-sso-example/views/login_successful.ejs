@@ -1,54 +1,66 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="../public/stylesheets/style.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
-    </head>
-    
-    <body class="container_success">
-        <div class="logged_in_nav">
-            <div class="flex">
+  <head>
+    <link rel="stylesheet" href="../public/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Inter" />
+  </head>
+
+  <body class="container_success">
+    <div class="logged_in_nav">
+      <div class="flex">
+        <div>
+          <img
+            src="../public/images/workos-logo-with-text.png"
+            alt="workos logo" />
+        </div>
+      </div>
+      <div class="flex">
+        <a href="https://workos.com/docs" target="_blank">
+          <button class="button nav-item">Documentation</button>
+        </a>
+        <a href="https://workos.com/docs/reference" target="_blank">
+          <button class="button nav-item">API Reference</button>
+        </a>
+        <a href="https://workos.com/blog" target="_blank">
+          <button class="button nav-item blog-nav-button">Blog</button>
+        </a>
+        <a href="https://workos.com/" target="_blank">
+          <button class="button button-outline">WorkOS</button>
+        </a>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="logged_in_div_right">
+        <div class="flex_column">
+          <div class="flex width-941px space-between">
+            <div>
+              <h2>Profile Details</h2>
+            </div>
+            <div class="prettyprint noborder">
+              <a href="/logout">
+                <button class="button button-outline">Log Out</button>
+              </a>
+              <div>
+                <a
+                  href="http://localhost:8001/users?id=directory_01HGRKNZ33NTXW3E3G49J4PKWF">
+                  <button class="button button-outline">Get Users</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <pre id="noborder" class="prettyprint noborder">
+                
                 <div>
-                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo" />
+                  <h1>Welcome: <%= profile %></h1>
                 </div>
-            </div>
-            <div class="flex">
-                <a href="https://workos.com/docs" target="_blank">
-                    <button class="button nav-item">Documentation</button>
-                </a>
-                <a href="https://workos.com/docs/reference" target="_blank">
-                    <button class="button nav-item">API Reference</button>
-                </a>
-                <a href="https://workos.com/blog" target="_blank">
-                    <button class="button nav-item blog-nav-button">Blog</button>
-                </a>
-                <a href="https://workos.com/" target="_blank">
-                    <button class="button button-outline">WorkOS</button>
-                </a>
-            </div>
+                                                   
+            </pre>
+          </div>
         </div>
-        <div class="flex">
-            <div class="logged_in_div_right">
-                <div class="flex_column">
-                    <div class="flex width-941px space-between">
-                        <div>
-                            <p>Profile Details</p>
-                        </div>
-                        <div>
-                            <a href="/logout">
-                                <button class="button button-outline">
-                                    Log Out
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <pre id="noborder" class="prettyprint noborder">
-                            <%= profile %>
-                        </pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    </body>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </body>
 </html>
