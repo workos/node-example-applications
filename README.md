@@ -29,6 +29,13 @@ npm start
 
 - http://localhost:8001 as the secondary server that will retrieve our users
 
+## Loggin In:
+
+log into the app using a dummy gmail account 
+
+- `nathan.test.workos@gmail.com`
+- `test123*`
+
 ## Need help?
 
 Reach out to me on [Twitter](https://twitter.com/nathan_tarbert) if you have any trouble logging in.
