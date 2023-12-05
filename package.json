@@ -8,9 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./index.js",
     "build": "npm install && echo 'Build completed successfully.'",
-    "start:server1": "cd ./node-sso-example && npm start",
-    "start:server2": "cd ./node-directory-sync-example && npm start",
-    "start:both": "concurrently \"npm run start:server1\" \"npm run start:server2\""
+    "start:server1": "cd ./node-sso-example && npm install && npm start",
+    "start:server2": "cd ./node-directory-sync-example && npm install && npm start",
+    "start:both": "npm install && concurrently \"npm run start:server1\" \"npm run start:server2\""
   },
   "repository": {
     "type": "git",
