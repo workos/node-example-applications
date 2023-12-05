@@ -1,16 +1,37 @@
-# Node Example Applications powered by WorkOS
+# Node.js Example App with SSO & Directory Sync
 
-Example applications demonstrating to use the [WorkOS Node SDK](https://github.com/workos-inc/workos-node) for SSO, Directory Sync, Admin Portal and Magic Link.
+![image](https://github.com/NathanTarbert/nathans-node-auth-app/assets/66887028/9b6fbf34-4094-4c63-91f1-2ea9de6dfd10)
 
-## For more information, please see the following guides:
+## Clone the repo
+```bash
+$ https://github.com/NathanTarbert/nathans-node-auth-app.git
+  ```
 
-- [Single Sign-On](https://workos.com/docs/sso/guide)
-- [Directory Sync](https://workos.com/docs/directory-sync/guide)
-- [Admin Portal](https://workos.com/docs/admin-portal/guide)
-- [Magic Link](https://workos.com/docs/magic-link/guide)
+Change directories into the app and install dependencies
 
-- [API Reference](https://workos.com/docs/reference)
+```sh
+$ cd nathans-node-auth-app && npm install
+```
+
+
+This is an example application which demonstrates the process of authenticating users via SSO and Directory Sync.
+The two services we are using are WorkOS and Okta.
+
+## Testing the Integration
+
+We will run two servers with one command.
+
+```sh
+$ npm run start:both
+```
+
+- http://localhost:8000 as the primary server to authenticate the SSO login
+
+- http://localhost:8001 as the secondary server that will retrieve our users
+
+Navigate to `localhost:8000` to begin loggin in. 
+
 
 ## Need help?
 
-If you get stuck and aren't able to resolve the issue by reading our [WorkOS Node SDK documentation](https://docs.workos.com/sdk/node) or [API reference](https://workos.com/docs/reference), you can reach out to us at support@workos.com and we'll lend a hand!
+Reach out to me on [Twitter](https://twitter.com/nathan_tarbert) if you have any trouble logging in.

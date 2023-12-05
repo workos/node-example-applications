@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    </head>
+
+    <body class="container_success">
+        <div class="logged_in_nav">
+            <div class="flex">
+                <div>
+                    <img src="../public/images/workos-logo-with-text.png" alt="workos logo">
+                </div>
+            </div>
+            <div>
+                <a href="https://workos.com/docs" target="_blank"><button class='button nav-item'>Documentation</button></a>
+                <a href="https://workos.com/docs/reference" target="_blank"><button class='button nav-item'>API
+                        Reference</button></a>
+                <a href="https://workos.com/blog" target="_blank"><button
+                        class='button nav-item blog-nav-button'>Blog</button></a>
+                <a href="https://workos.com/" target="_blank"><button class='button button-outline'>WorkOS</button></a>
+            </div>
+        </div>
+            <div class="logged_in_div_right">
+                <div id="webhooks-view-div" class="flex_column">
+                    <div class="flex width-40vw space-between">
+                        <h2>Live Webhooks View</h2>
+                        <div id="tutorial_button">
+                            <a href="https://workos.com/blog/test-workos-webhooks-locally-ngrok" target="_blank"
+                                class="button mt-15">Tutorial</a>
+                                <a href="/webhooks" class="button mt-10">Clear</a>
+                            <a href="javascript:history.back()"><button class='button button-outline'>Back</button></a>
+                        </div>
+                    </div>
+                    <div id="webhooks-view" class="width-40vw webhooks-container">
+    
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var counter = 0
+            var webhooksView = document.getElementById('webhooks-view')
+            var clearButtonDiv = document.getElementById('clear_button_div')
+            var clearButton = document.getElementById('clear_button')
+            var tutorialButton = document.getElementById('tutorial_button')
+
+            var socket = io()
+            socket.on('connect', function () {
+                console.log('socket connection successful')
+            })
+
+            socket.on('webhook event', (data) => {
+                webhooksView.classList.add("webhooks_container")
+                webhooksView.insertAdjacentHTML("afterbegin",
+                    "<div class='margin_top width-40vw'> Webhook received at: " + new Date().toISOString() + "</div>" +
+                    "<br/>" +
+                    "<pre>" + "<code>" + JSON.stringify(data.webhook, null, 2) + "</code>" + "</pre>" +
+                    "<br/>" + "<hr/>" + "<br/>"
+                );
+                if (counter < 1) {
+                    clearButtonDiv.classList.remove('login_button')
+                    clearButtonDiv.classList.add('flex_right')
+                    clearButton.classList.remove('hidden')
+                    tutorialButton.classList.add('hidden')
+                    counter++
+                }
+            })
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    </body>
+</html>

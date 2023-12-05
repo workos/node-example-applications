@@ -29,31 +29,30 @@
         </a>
       </div>
     </div>
-    <div class="flex" style="background-color: rgb(232, 227, 227)">
+    <div class="flex">
       <div class="logged_in_div_right">
         <div class="flex_column">
-          <div
-            class="flex space-between width-507px"
-            style="background-color: white">
-            <div style="background-color: white">
-              <h2 style="background-color: white">Groups Details</h2>
+          <div class="flex space-between width-507px">
+            <div>
+              <h2>Groups Details</h2>
             </div>
-            <div style="background-color: white">
+            <div>
               <a href="javascript:history.back()">
                 <button class="button button-sm button-outline">Back</button>
               </a>
             </div>
           </div>
           <% if (groups.length > 0) { %>
-          <div class="table-container" style="background-color: white">
-            <table class="width-507px" style="height: 100px">
+          <div class="table-container">
+            <table class="width-507px">
               <tr>
-                <h2 style="background-color: white">Name</h2>
+                <th>Name</th>
+                <th>ID</th>
               </tr>
               <% for (let i = 0; i < groups.length; i++) { %>
-
               <tr>
-                <td style="font-size: 1.3rem"><%= groups[i].name %></td>
+                <td class="ta-left"><%= groups[i].name %></td>
+                <td class="ta-left"><code><%= groups[i].id %></code></td>
               </tr>
               <% } %>
             </table>

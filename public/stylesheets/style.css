@@ -36,12 +36,16 @@ body {
     align-items: center;
 }
 
-.m-top-20 {
-    margin-top: 20px;
-}
-
 .space-between {
     justify-content: space-between;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
+
+.flex-end {
+    justify-content: flex-end;
 }
 
 .container_success {
@@ -53,7 +57,7 @@ body {
 }
 
 .heading_div {
-    margin: 35px 0px 0px 0px;
+    margin: 25px 0px 25px 0px;
 }
 
 .heading_text_div {
@@ -69,61 +73,10 @@ body {
     background-size: cover;
 }
 
-.text_input {
-    border: 1px solid #555555;
-    border-radius: 10px;
-    margin: 10px 0px 7px 0px;
-    padding: 5px;
-    height: 35px;
-    width: 18vw;
-    text-align: center;
-}
-
-.code-input {
-    width: 75px;
-    height: 100px;
-    margin: 0px 5px 30px 5px;
-    font-size: 60px;
-    color: darkslategray;
-}
-
-.qr_div {
-    align-self: center;
-    margin-top: 45px;
-}
-
-.qr_code {
-    width: 7vw;
-    max-width: 100px;
-}
-
-.factor_card {
-    border: 1px solid #555555;
-    border-radius: 10px;
-    width: 20vw;
-    margin: 0px 15px 0px 15px;
-    padding: 25px;
-}
-
-.card {
-    border: 1px solid #555555;
-    border-radius: 10px;
-    margin: 0px 15px 0px 15px;
-    padding: 25px 50px;
-    margin-bottom: 20px;
-}
-
-.profile_card {
-    width: 40vw;
-    overflow: scroll;
-    background: white;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
-
 .button {
     background-color: #6363f1;
     border: 2px solid #6363f1;
-    border-radius: 10px;
+    border-radius: 26px;
     color: white;
     padding: 8px 16px;
     text-align: center;
@@ -142,10 +95,6 @@ body {
     padding: 8px 16px;
 }
 
-.button-sm {
-    padding: 8px 16px;
-}
-
 .button:hover,
 .button-outline:hover {
     background-color: #555555;
@@ -158,14 +107,8 @@ body {
 }
 
 .login_button {
-    width: 100%;
+    width: 95%;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    background-color: white;
-}
-
-.login_button:hover {
-    border-color: #6363f1;
-    color: #292929;
 }
 
 h2,
@@ -175,7 +118,6 @@ h1 {
 }
 
 .logged_in_div_right {
-    width: 60%;
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -183,17 +125,6 @@ h1 {
     align-items: center;
     position: relative;
     bottom: 10%;
-}
-
-.logged_in_div_left {
-    width: 40%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    background-color: #f9f9fb;
-    margin-left: 4vw;
 }
 
 .logged_in_div_left div {
@@ -252,14 +183,32 @@ h1 {
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
+div.text_box {
+    background-color: #f9f9fb;
+    width: 40vw;
+    max-height: 30vh;
+    padding: 10px;
+    word-wrap: break-word;
+    overflow: scroll;
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(
+            #a163f1,
+            #6363f1 22%,
+            #3498ea 40%,
+            #40dfa3 67%,
+            rgba(64, 223, 163, 0)
+        )
+        0 100%;
+}
+
 .logged_in_nav {
     display: flex;
     justify-content: space-between;
     background-color: #f9f9fb;
     height: 60px;
     padding: 15px 30px 15px 30px;
-    z-index: 1000;
-    width: 95vw;
+    z-index: 998;
 }
 
 .logged_in_nav p {
@@ -292,55 +241,82 @@ h1 {
     color: #a6a4a4;
 }
 
-.workos-logo {
-    position: relative;
-    top: 38px;
-    padding-right: 25px;
-    height: 75px !important;
+pre.prettyprint {
+    border: none !important;
 }
 
-.webhooks_container {
-    width: 45vw;
+.text_input {
+    border: 1px solid #555555;
+    border-radius: 10px;
+    margin: 7px 0px 7px 0px;
+    padding: 5px;
+    height: 35px;
+    width: 18vw;
+    text-align: center;
+}
+
+.factor_card {
+    border: 1px solid #555555;
+    border-radius: 10px;
+    width: 20vw;
+    margin: 0px 15px 0px 15px;
     padding: 25px;
-    max-height: 450px;
-    overflow-y: scroll;
 }
 
-.mb-0 {
-    margin-bottom: 0px;
-}
-
-.mb-20 {
+.card {
+    border: 1px solid #555555;
+    border-radius: 10px;
+    margin: 0px 15px 0px 15px;
+    padding: 25px 50px;
     margin-bottom: 20px;
 }
 
-.google_button {
-    background-image: url("./images/google-button.png");
-    background-size: cover;
+.code-input {
+    width: 75px;
+    height: 100px;
+    margin: 0px 5px 30px 5px;
+    font-size: 60px;
+    color: darkslategray;
 }
 
-.microsoft_button {
-    background-image: url("./images/microsoft-button.png");
-    background-size: cover;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
-.saml_button {
-    background-image: url("./images/saml-button.png");
-    background-size: cover;
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.error_message {
-    color: #6363f1;
-    margin-top: 0px;
-    font-size: 12px;
+.qr_code_instructions {
+    width: 300px;
 }
 
-#noborder {
-    border: none;
+.qr_code {
+    width: 300px;
+    margin: 25px;
 }
 
-#noborder > :first-child {
-    display: none;
+button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 tr {
@@ -378,46 +354,76 @@ th {
     padding: 15px 40px;
 }
 
+.webhooks-container,
+.table-container {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
 .width-75 {
     width: 75%;
 }
 
-.width-40vw {
-    width: 40vw;
+.width-10vw {
+    width: 10vw;
 }
 
 .width-25vw {
     width: 25vw;
 }
 
-.width-18vw {
-    width: 18vw;
+.width-40vw {
+    width: 40vw;
 }
 
 .width-65vw {
-    width: 50vw;
+    width: 65vw;
 }
 
-.width-941px {
-    width: 941px;
+.width-70vw {
+    width: 70vw;
 }
 
-.width-335 {
-    width: 335px;
+.width-75vw {
+    width: 75vw;
 }
 
-.height-315 {
-    height: 315px;
+.width-175px {
+    width: 175px;
 }
 
-.height-40vh {
-    height: 40vw;
+.width-350px {
+    width: 350px;
 }
 
-.height-80vh {
-    height: 80vh;
+.width-440px {
+    width: 440px;
 }
 
-.height-100vh {
-    height: 100vh;
+.width-507px {
+    width: 507px;
+}
+
+.width-587px {
+    width: 587px;
+}
+
+.width-725px {
+    width: 725px;
+}
+
+.height-70vh {
+    height: 70vh;
+}
+
+.height-250px {
+    height: 250px;
+}
+
+#noborder {
+    border: none;
+}
+
+#noborder > :first-child {
+    display: none;
 }
