@@ -16,7 +16,7 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 const clientID = process.env.WORKOS_CLIENT_ID
-const organizationID = ''
+const organizationID = 'org_test_idp'
 const redirectURI = 'http://localhost:8000/callback'
 const state = ''
 
@@ -56,22 +56,31 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/callback', async (req, res) => {
+    let errorMessage
     try {
-        const { code } = req.query
+        const { code, error } = req.query
 
-        const profile = await workos.sso.getProfileAndToken({
-            code,
-            clientID,
-        })
-        const json_profile = JSON.stringify(profile, null, 4)
+        if (error) {
+            errorMessage = `Redirect callback error: ${error}`
+        } else {
+            const profile = await workos.sso.getProfileAndToken({
+                code,
+                clientID,
+            })
+            const json_profile = JSON.stringify(profile, null, 4)
 
-        session.first_name = profile.profile.first_name
-        session.profile = json_profile
-        session.isloggedin = true
-
-        res.redirect('/')
+            session.first_name = profile.profile.first_name
+            session.profile = json_profile
+            session.isloggedin = true
+        }
     } catch (error) {
-        res.render('error.ejs', { error: error })
+        errorMessage = `Error exchanging code for profile: ${error}`
+    }
+
+    if (errorMessage) {
+        res.render('error.ejs', { error: errorMessage })
+    } else {
+        res.redirect('/')
     }
 })
 
