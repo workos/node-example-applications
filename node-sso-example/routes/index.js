@@ -74,7 +74,7 @@ router.get('/callback', async (req, res) => {
             session.isloggedin = true
         }
     } catch (error) {
-        errorMessage = `Code for profile exchange error: ${error}`
+        errorMessage = `Error exchanging code for profile: ${error}`
     }
 
     if (errorMessage) {
