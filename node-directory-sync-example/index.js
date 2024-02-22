@@ -14,7 +14,7 @@ const port = process.env.PORT || '8000'
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 
 const server = app.listen(port, () => {
-    console.log(`⚡️ [server]: Server is running at https://localhost:${port}`)
+    console.log(`⚡️ [server]: Server is running at http://localhost:${port}`)
 })
 
 const io = new Server(server)
